@@ -88,8 +88,12 @@ void	launch(char **path, int *state)
 	{
 		while (path[++i])
 		{
-			lstat(path[i], &(mstat));
-			if (S_ISREG(mstat.st_mode) || S_ISLNK(mstat.st_mode))
+			if (lstat(path[i], &(mstat)) == -1)
+				{
+					ft_putstr("./ft_ls: ");
+					perror(path[i]);
+				}
+			else if (S_ISREG(mstat.st_mode) || S_ISLNK(mstat.st_mode))
 				gopath2(path[i], state, mstat, i);
 			else
 				gopath(path[i], state, mstat, i);
