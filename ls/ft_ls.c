@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 15:21:24 by hjacque           #+#    #+#             */
-/*   Updated: 2016/04/02 15:45:07 by apinho           ###   ########.fr       */
+/*   Updated: 2016/04/02 16:07:43 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	launch(char **path, int *state)
 		while (path[++i])
 		{
 			lstat(path[i], &(mstat));
-			if (S_ISREG(mstat.st_mode))
+			if (S_ISREG(mstat.st_mode) || S_ISLNK(mstat.st_mode))
 				gopath2(path[i], state, mstat, i);
 			else
 				gopath(path[i], state, mstat, i);
