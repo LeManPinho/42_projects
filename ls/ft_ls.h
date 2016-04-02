@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 14:53:06 by hjacque           #+#    #+#             */
-/*   Updated: 2016/04/02 15:43:05 by apinho           ###   ########.fr       */
+/*   Updated: 2016/04/02 16:29:33 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,6 @@ t_ls				*filla(int *state, t_ls *a, char *path, struct dirent *dir);
 void				printerror(char **av, int i, int u);
 void				gopath(char *path, int *state, struct stat stat, int i);
 void				gopath2(char *path, int *state, struct stat stat, int i);
+void				rilimate(char *path, int *state, int i);
 
 #endif

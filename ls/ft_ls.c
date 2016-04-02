@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 15:21:24 by hjacque           #+#    #+#             */
-/*   Updated: 2016/04/02 16:07:43 by apinho           ###   ########.fr       */
+/*   Updated: 2016/04/02 16:29:12 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,7 @@ void	launch(char **path, int *state)
 	else
 	{
 		while (path[++i])
-		{
-			if (lstat(path[i], &(mstat)) == -1)
-				{
-					ft_putstr("./ft_ls: ");
-					perror(path[i]);
-				}
-			else if (S_ISREG(mstat.st_mode) || S_ISLNK(mstat.st_mode))
-				gopath2(path[i], state, mstat, i);
-			else
-				gopath(path[i], state, mstat, i);
-		}
+			rilimate(path[i], state, i);
 	}
 }
 

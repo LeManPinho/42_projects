@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/02 14:35:10 by apinho            #+#    #+#             */
-/*   Updated: 2016/04/02 15:43:16 by apinho           ###   ########.fr       */
+/*   Updated: 2016/04/02 16:29:19 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,19 @@ void	gopath2(char *path, int *state, struct stat stat, int i)
 		ft_putendl(":");
 		recursive(path, state, 2);
 	}
+}
+
+void	rilimate(char *path, int *state, int i)
+{
+	struct stat mstat;
+
+	if (lstat(path, &(mstat)) == -1)
+	{
+		ft_putstr("./ft_ls: ");
+		perror(path);
+	}
+	else if (S_ISREG(mstat.st_mode) || S_ISLNK(mstat.st_mode))
+		gopath2(path, state, mstat, i);
+	else
+		gopath(path, state, mstat, i);
 }
