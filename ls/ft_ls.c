@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/29 15:21:24 by hjacque           #+#    #+#             */
-/*   Updated: 2016/04/02 14:30:43 by apinho           ###   ########.fr       */
+/*   Updated: 2016/04/02 15:45:07 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	launch(char **path, int *state)
 	int			i;
 	struct stat	mstat;
 
-	i = 0;
+	i = -1;
 	if (path == NULL)
 	{
 		if (state[D] == 1)
@@ -86,11 +86,13 @@ void	launch(char **path, int *state)
 	}
 	else
 	{
-		while (path[i])
+		while (path[++i])
 		{
 			lstat(path[i], &(mstat));
-			gopath(path[i], state, mstat, i);
-			i++;
+			if (S_ISREG(mstat.st_mode))
+				gopath2(path[i], state, mstat, i);
+			else
+				gopath(path[i], state, mstat, i);
 		}
 	}
 }
