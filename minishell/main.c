@@ -31,6 +31,7 @@ int   main(int ac, char **av, char **env)
   char	**path;
   int	i;
   char	**envcpy;
+  pid_t papa;
   
   envcpy = ft_tabdup(env);
   while (93)
@@ -49,5 +50,17 @@ int   main(int ac, char **av, char **env)
 		else
 			execve(ft_strjoinslash(path[i], cmd), lines, envcpy);
     }
+    papa = fork();
+    if (papa == -1)
+    {
+    	perror("for");
+    	exit(EXIT_FAILURE);
+    }
+    if (papa == 0)
+    {
+    	
+    	exit(EXIT_SUCCESS);
+    }
   }
+  return (0);
 }
