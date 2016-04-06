@@ -28,7 +28,7 @@ int   main(int ac, char **av, char **env)
   {
     ft_putstr("$> ");
     str_to_wordtab(get_next_line(0), ' ');
-    ft_getenvpath(env, "PATH"));
+    ft_getenvpath(env, "PATH="));
       
   }
   
