@@ -30,7 +30,9 @@ int   main(int ac, char **av, char **env)
   char	*cmd;
   char	**path;
   int	i;
+  char	**envcpy;
   
+  envcpy = ft_tabdup(env);
   while (93)
   {
   	i = -1;
@@ -38,14 +40,14 @@ int   main(int ac, char **av, char **env)
     get_next_line(0, &line);
     lines = ft_strsplit(line, ' ');
     cmd = ft_strdup(lines[0]);
-    pathrecup = ft_getenvpath(env, "PATH="));
-    path =ft_strsplit(pathrecup, ':');
+    pathrecup = ft_getenvpath(envcpy, "PATH="));
+    path = ft_strsplit(pathrecup, ':');
     while (path[++i])
     {
-      if (access(path[i], F_OK) == -1)
-        printerroraccess(); //fonction pour later
-    	execve(ft_strjoinslash(path[i], cmd), lines, env);
+		if (access(path[i], F_OK) == -1)
+			printerroraccess(); //fonction pour later
+		else
+			execve(ft_strjoinslash(path[i], cmd), lines, envcpy);
     }
   }
-  
 }
