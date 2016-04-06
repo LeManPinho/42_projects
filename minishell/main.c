@@ -24,14 +24,11 @@ char  *ft_getenvpath(char **env, char *elem)
 
 int   main(int ac, char **av, char **env)
 {
-  char *elem;
-  
-  elem = ft_strdup("PATH");
   while (93)
   {
     ft_putstr("$> ");
     str_to_wordtab(get_next_line(0), ' ');
-    ft_getenvpath(env, elem))
+    ft_getenvpath(env, "PATH"));
       
   }
   
