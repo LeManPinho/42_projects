@@ -41,7 +41,11 @@ int   main(int ac, char **av, char **env)
     pathrecup = ft_getenvpath(env, "PATH="));
     path =ft_strsplit(pathrecup, ':');
     while (path[++i])
+    {
+      if (access(path[i], F_OK) == -1)
+        printerroraccess(); //fonction pour later
     	execve(ft_strjoinslash(path[i], cmd), lines, env);
+    }
   }
   
 }
