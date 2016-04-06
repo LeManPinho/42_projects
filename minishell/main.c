@@ -33,14 +33,14 @@ int   main(int ac, char **av, char **env)
   
   while (93)
   {
-  	i = 0;
+  	i = -1;
     ft_putstr("$> ");
     get_next_line(0, &line);
     lines = ft_strsplit(line, ' ');
     cmd = ft_strdup(lines[0]);
     pathrecup = ft_getenvpath(env, "PATH="));
     path =ft_strsplit(pathrecup, ':');
-    while (path[i])
+    while (path[++i])
     	execve(ft_strjoinslash(path[i], cmd), lines, env);
   }
   
