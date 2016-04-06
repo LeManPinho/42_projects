@@ -53,7 +53,7 @@ int   main(int ac, char **av, char **env)
     papa = fork();
     if (papa == -1)
     {
-    	perror("for");
+    	perror("fork");
     	exit(EXIT_FAILURE);
     }
     if (papa == 0)
