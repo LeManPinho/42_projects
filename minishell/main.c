@@ -24,12 +24,24 @@ char  *ft_getenvpath(char **env, char *elem)
 
 int   main(int ac, char **av, char **env)
 {
+  char  *line;
+  char	*pathrecup;
+  char	**lines;
+  char	*cmd;
+  char	**path;
+  int	i;
+  
   while (93)
   {
+  	i = 0;
     ft_putstr("$> ");
-    ft_strsplit(get_next_line(0), ' ');
-    ft_getenvpath(env, "PATH="));
-      
+    get_next_line(0, &line);
+    lines = ft_strsplit(line, ' ');
+    cmd = ft_strdup(lines[0]);
+    pathrecup = ft_getenvpath(env, "PATH="));
+    path =ft_strsplit(pathrecup, ':');
+    while (path[i])
+    	execve(ft_strjoinslash(path[i], cmd), lines, env);
   }
   
 }
