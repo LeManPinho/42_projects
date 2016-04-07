@@ -22,30 +22,6 @@ char  *ft_getenvpath(char **env, char *elem)
   return (NULL);
 }
 
-t_list *ft_list_add(void *data, t_list **begin)
-{
-	t_list *l;
-	
-	if (!(l = malloc(sizeof(*ret))))
-		RETURN (NULL);
-	l->data = data;
-	l->next = *begin;
-	*begin = l;
-	return (l);
-}
-
-t_list	*listenv(char **envcpy, int size)
-{
-	t_list *l;
-	int i;
-	
-	i = -1;
-	l = 0;
-	while (++i < size)
-		l = ft_list_add(envcpy[i], l);
-	return (l);
-}
-
 int   main(int ac, char **av, char **env)
 {
   char  *line;
