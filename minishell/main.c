@@ -4,11 +4,11 @@ char  *ft_getenvpath(char **env, char *elem)
   unsigned int u;
   int o;
   
-  o = 0;
   i = 0;
   while (env[i])
   {
     u = 0;
+    o = 0;
     while (u < ft_strlen(elem) && o != -1)
     {
       if (env[i][u] != elem[u])
