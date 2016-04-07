@@ -1,6 +1,8 @@
-t_list	*addelem(t_list **begin, void *data)
+#include "minishell.h"
+
+t_lst	*addelem(t_lst **begin, void *data)
 {
-	t_list	*ret;
+	t_lst	*ret;
 
 	if (!(ret = malloc(sizeof(*ret))))
 		return (NULL);
@@ -10,9 +12,9 @@ t_list	*addelem(t_list **begin, void *data)
 	return (ret);
 }
 
-t_list   *dtab_to_lst(char **dtab)
+t_lst   *dtab_to_lst(char **dtab)
 {
-    t_list   *lst;
+    t_lst   *lst;
     int     i;
     
     i = -1;

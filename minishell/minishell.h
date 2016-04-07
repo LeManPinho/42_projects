@@ -6,21 +6,21 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/stat.h>
-# include <fcnt1.h>
+# include <fcntl.h>
 # include <sys/wait.h>
 # include <sys/time.h>
 # include <sys/resource.h>
 # include <signal.h>
 # include "libft/libft.h"
 
-typedef struct  s_list
+typedef struct  s_lst
 {
   void          *data;
-  struct s_list *next;
-}               t_list;
+  struct s_lst  *next;
+}               t_lst;
 
-t_list	*addelem(t_list **begin, void *data);
-t_list  *dtab_to_lst(char **dtab);
+t_lst	*addelem(t_lst **begin, void *data);
+t_lst  *dtab_to_lst(char **dtab);
 char    *ft_getenvpath(char **env, char *elem);
 
 #endif

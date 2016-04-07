@@ -1,3 +1,5 @@
+#include "minishell.h"
+
 char  *ft_getenvpath(char **env, char *elem)
 {
   int i;
@@ -17,7 +19,7 @@ char  *ft_getenvpath(char **env, char *elem)
         u++;
     }
     if (u == ft_strlen(elem))
-      return (&env[i]);
+      return (env[i]);
     else
       i++;
   }
@@ -35,6 +37,8 @@ int   main(int ac, char **av, char **env)
   char	**envcpy;
   pid_t papa;
   
+  (void)ac;
+  (void)av;
   envcpy = ft_tabdup(env);
   while (93)
   {
@@ -43,14 +47,14 @@ int   main(int ac, char **av, char **env)
     get_next_line(0, &line);
     lines = ft_strsplit(line, ' ');
     cmd = ft_strdup(lines[0]);
-    pathrecup = ft_getenvpath(envcpy, "PATH="));
+    pathrecup = ft_getenvpath(envcpy, "PATH=");
     path = ft_strsplit(pathrecup, ':');
     while (path[++i])
     {
 		papa = fork();
 		if (papa == -1)
 		{
-			perror("fork");
+			ft_putstr("fork");
 			exit(EXIT_FAILURE);
 		}
 		if (papa == 0)
@@ -62,6 +66,7 @@ int   main(int ac, char **av, char **env)
 //			printerroraccess(); //fonction pour later
 //		else
 //			execve(ft_strjoinslash(path[i], cmd), lines, envcpy);
+	}
   }
   return (0);
 }
