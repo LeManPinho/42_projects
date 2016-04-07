@@ -21,6 +21,6 @@ typedef struct  s_lst
 
 t_lst	*addelem(t_lst **begin, void *data);
 t_lst  *dtab_to_lst(char **dtab);
-char    *ft_getenvpath(char **env, char *elem);
+char    *ft_getenv(char **env, char *elem);
 
 #endif
