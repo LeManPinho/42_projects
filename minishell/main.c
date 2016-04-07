@@ -45,22 +45,21 @@ int   main(int ac, char **av, char **env)
     path = ft_strsplit(pathrecup, ':');
     while (path[++i])
     {
-		if (access(path[i], F_OK) == -1)
-			printerroraccess(); //fonction pour later
-		else
+		papa = fork();
+		if (papa == -1)
+		{
+			perror("fork");
+			exit(EXIT_FAILURE);
+		}
+		if (papa == 0)
+		{
 			execve(ft_strjoinslash(path[i], cmd), lines, envcpy);
-    }
-    papa = fork();
-    if (papa == -1)
-    {
-    	perror("fork");
-    	exit(EXIT_FAILURE);
-    }
-    if (papa == 0)
-    {
-    	
-    	exit(EXIT_SUCCESS);
-    }
+			exit(EXIT_SUCCESS);
+		}
+//		if (access(path[i], F_OK) == -1)
+//			printerroraccess(); //fonction pour later
+//		else
+//			execve(ft_strjoinslash(path[i], cmd), lines, envcpy);
   }
   return (0);
 }
