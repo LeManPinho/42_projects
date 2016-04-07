@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-char  *ft_getenvpath(char **env, char *elem)
+char  *ft_getenv(char **env, char *elem)
 {
   int i;
   unsigned int u;
