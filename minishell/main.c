@@ -38,8 +38,53 @@ char  *ft_getenv(char **env, char *elem)
   return (NULL);
 }
 
+t_dlst  *new_dlst(void)
+{
+    t_dlst *new;
+    
+    new = (t_dlst*)malloc(sizeof(t_dlst));
+    if (new != NULL)
+    {
+        new->head = NULL;
+        new->tail = NULL;
+        new->lenght = 0;
+    }
+    return (new);
+}
+
+t_double    *dlst_allelem(char *elem)
+{
+    t_double *data;
+    
+    data = (t_double*)malloc(sizeof(t_double))
+    if (data != NULL)
+    {
+        data->s = ft_strdup(elem);
+        data->next = NULL;
+        data->prev = NULL;
+    }
+    return (data);
+}
+
+t_tout  *inittout(char **env)
+{
+    t_tout *tout;
+    int     i;
+    
+    i = 0;
+    if (!(tout = (t_tout *)malloc(sizeof(t_tout))))
+        return ;
+    tout->envcpy = ft_tabdup(env);
+    tout->cmd = NULL;
+    tout->env = new_dlst();
+    while (env[i])
+        dlst_addbackw(tout->env, dlst_allelem(env[i++]));
+    return (tout);
+}
+
 int   main(int ac, char **av, char **env)
 {
+        t_tout    *tout;
 	char  	*line;
 	char	*pathrecup;
 	char	**lines;
@@ -51,6 +96,7 @@ int   main(int ac, char **av, char **env)
   
 	(void)ac;
 	(void)av;
+        tout = inittout(env);
 	envcpy = ft_tabdup(env);
 	while (93)
 	{
@@ -58,7 +104,7 @@ int   main(int ac, char **av, char **env)
 		ft_putstr("$> ");
 		get_next_line(0, &line);
 		if (ft_strcmp(line, "\0") == 0)
-			ft_strlen("TGPINHO");
+			wait(NULL);
 		else
 		{
 			lines = ft_strsplit(line, ' ');

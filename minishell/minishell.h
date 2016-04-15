@@ -14,11 +14,30 @@
 # include "libft/libft.h"
 # include "get_next_line.h"
 
-typedef struct  s_lst
+typedef struct      s_double
 {
-  void          *data;
-  struct s_lst  *next;
-}               t_lst;
+  char              *s;
+  struct s_double   *next;
+  struct s_double   *prev;
+}                   t_double;
+
+typedef struct      s_dlst
+{
+    struct s_double *head;
+    struct s_double *tail;
+    size_t          lenght;
+}                   t_dlst;
+
+typedef struct  s_tout
+{
+    t_lst   *env;
+    char    *line;
+    char    *pathrecup;
+    char    **lines;
+    char    *cmd;
+    char    **path;
+    char    **envcpy
+}               t_tout
 
 t_lst	*addelem(t_lst **begin, void *data);
 t_lst  *dtab_to_lst(char **dtab);
