@@ -40,54 +40,44 @@ char  *ft_getenv(char **env, char *elem)
 
 t_tout  *inittout(char **env)
 {
-    t_tout *tout;
-    int     i;
-    
-    i = 0;
-    if (!(tout = (t_tout *)malloc(sizeof(t_tout))))
-        return ;
-    tout->envcpy = ft_tabdup(env);
-    tout->cmd = NULL;
-    tout->env = new_dlst();
-    while (env[i])
-        dlst_addbackw(tout->env, dlst_allelem(env[i++]));
-    return (tout);
+	t_tout *tout;
+	int     i;
+	
+	i = 0;
+	if (!(tout = (t_tout *)malloc(sizeof(t_tout))))
+		return (NULL);
+	tout->envcpy = ft_tabdup(env);
+	tout->cmd = NULL;
+	tout->env = new_dlst();
+	while (env[i])
+		dlst_addbackw(tout->env, dlst_allelem(env[i++]));
+	tout->path = ft_strsplit(ft_getenv(tout->envcpy, "PATH="), ':');
+	return (tout);
 }
 
 int   main(int ac, char **av, char **env)
 {
-        t_tout    *tout;
-	char  	*line;
-	char	*pathrecup;
-	char	**lines;
-	char	*cmd;
-	char	**path;
+	t_tout    *tout;
 	int		i;
-	char	**envcpy;
- 	pid_t 	papa;
+	pid_t 	papa;
   
 	(void)ac;
 	(void)av;
-        tout = inittout(env);
-	envcpy = ft_tabdup(env);
+	tout = inittout(env);
 	while (93)
 	{
 		i = -1;
 		ft_putstr("$> ");
-		get_next_line(0, &line);
-		if (ft_strcmp(line, "\0") == 0)
+		get_next_line(0, &(tout->line));
+		if (ft_strcmp(tout->line, "\0") == 0)
 			wait(NULL);
 		else
 		{
-			lines = ft_strsplit(line, ' ');
-			cmd = ft_strdup(lines[0]);
-			pathrecup = ft_getenv(envcpy, "PATH=");
-			path = ft_strsplit(pathrecup, ':');
-			if (ft_strcmp(cmd, "env") == 0)
-				ft_puttab(envcpy);
-			while (path[++i])
+			tout->lines = ft_strsplit(tout->line, ' ');
+			tout->cmd = ft_strdup(tout->lines[0]);
+			while (tout->path[++i])
 			{
-				if (ft_strcmp(cmd, "exit") == 0)
+				if (ft_strcmp(tout->cmd, "exit") == 0)
 					return (0);
 				papa = fork();
 				if (papa == -1)
@@ -97,15 +87,11 @@ int   main(int ac, char **av, char **env)
 				}
 				if (papa == 0)
 				{
-					execve(ft_strjoinslash(path[i], cmd), lines, envcpy);
+					execve(ft_strjoinslash(tout->path[i], tout->cmd), tout->lines, tout->envcpy);
 					exit(EXIT_SUCCESS);
 				}
 				if (papa > 0)
 					wait(NULL);
-//		if (access(path[i], F_OK) == -1)
-//			printerroraccess(); //fonction pour later
-//		else
-//			execve(ft_strjoinslash(path[i], cmd), lines, envcpy);
 			}
 		}
 	}

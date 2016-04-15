@@ -3,7 +3,7 @@ CC =	gcc
 NAME =  minishell
 
 SRC  =  ./main.c \
-		    ./dtab_to_lst.c \
+		    ./dlst.c \
 		    ./get_next_line.c \
 
 OBJ =	$(SRC:.c=.o)

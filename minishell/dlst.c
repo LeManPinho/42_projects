@@ -18,7 +18,7 @@ t_double    *dlst_allelem(char *elem)
 {
     t_double *data;
     
-    data = (t_double*)malloc(sizeof(t_double))
+    data = (t_double*)malloc(sizeof(t_double));
     if (data != NULL)
     {
         data->s = ft_strdup(elem);
@@ -28,20 +28,20 @@ t_double    *dlst_allelem(char *elem)
     return (data);
 }
 
-t_dlst  *dlst_addbackw(t_dlst *dlst, t_double *double)
+t_dlst  *dlst_addbackw(t_dlst *dlst, t_double *dble)
 {
-    if (dlst && double)
+    if (dlst && dble)
     {
         if (dlst->tail == NULL)
         {
-            dlst->head = double;
-            dlst->tail = double;
+            dlst->head = dble;
+            dlst->tail = dble;
         }
         else
         {
-            dlst->tail->next = double;
-            double->prev = dlst->tail;
-            dlst->tail = double;
+            dlst->tail->next = dble;
+            dble->prev = dlst->tail;
+            dlst->tail = dble;
         }
         dlst->lenght++;
     }
@@ -53,11 +53,12 @@ t_dlst  *dlst_delelem(t_dlst *dlst, char *elemdel)
         t_double *tmp;
         int     i;
         
+        tmp = dlst->head;
         i = 0;
         if (dlst)
             while (tmp && !i)
             {
-                if (ft_strcmp(tmp->s, elemdel, ft_strlen(elemdel)) == 0)
+                if (ft_strncmp(tmp->s, elemdel, ft_strlen(elemdel)) == 0)
                 {
                     if (!tmp->next && !tmp->prev)
                     {
@@ -71,7 +72,7 @@ t_dlst  *dlst_delelem(t_dlst *dlst, char *elemdel)
                 }
                 tmp = tmp->next;
             }
-        return (lst);
+        return (dlst);
 }
 
 int     maj_dlst(t_dlst *dlst, t_double *elem)
