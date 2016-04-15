@@ -39,6 +39,11 @@ typedef struct  s_tout
     char    **envcpy
 }               t_tout
 
+t_dlst  *new_dlst(void);
+t_double    *dlst_allelem(char *elem);
+t_dlst  *dlst_addbackw(t_dlst *dlst, t_double *double);
+t_dlst  *dlst_delelem(t_dlst *dlst, char *elemdel);
+int     maj_dlst(t_dlst *dlst, t_double *elem);
 t_lst	*addelem(t_lst **begin, void *data);
 t_lst  *dtab_to_lst(char **dtab);
 char    *ft_getenv(char **env, char *elem);
