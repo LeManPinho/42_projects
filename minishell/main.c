@@ -81,6 +81,8 @@ int   main(int ac, char **av, char **env)
 				unsetenvnow(tout);
 			if (ft_strcmp(tout->cmd, "env") == 0)
 				printenv(tout);
+			if (ft_strcmp(tout->cmd, "cd") == 0)
+				gocd(tout);
 			while (tout->path[++i])
 			{
 				if (ft_strcmp(tout->cmd, "exit") == 0)
@@ -93,7 +95,7 @@ int   main(int ac, char **av, char **env)
 				}
 				if (papa == 0)
 				{
-					execve(ft_strjoinslash(tout->path[i], tout->cmd), tout->lines, tout->envcpy);
+					execve(ft_strjoinchar(tout->path[i], tout->cmd, '/'), tout->lines, tout->envcpy);
 					exit(EXIT_SUCCESS);
 				}
 				if (papa > 0)

@@ -36,6 +36,7 @@ typedef struct  s_tout
 	char    *cmd;
 	char    **path;
 	char    **envcpy;
+	char	*oldpwd;
 }               t_tout;
 
 t_dlst		*new_dlst(void);
@@ -48,5 +49,8 @@ void		setenvnow(t_tout *tout);
 void		unsetenvnow(t_tout *tout);
 t_dlst		*setit(t_dlst *dlst, char *elem, char *modifelem);
 void		printenv(t_tout *tout);
+char		*getvarenv(t_tout *tout, char *var);
+void		gocd(t_tout *tout);
+void		maj_oldpwd(t_tout *tout);
 
 #endif
