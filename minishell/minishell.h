@@ -23,26 +23,30 @@ typedef struct      s_double
 
 typedef struct      s_dlst
 {
-    struct s_double *head;
-    struct s_double *tail;
-    size_t          lenght;
+	struct s_double *head;
+	struct s_double *tail;
+	size_t          lenght;
 }                   t_dlst;
 
 typedef struct  s_tout
 {
-    t_dlst   *env;
-    char    *line;
-    char    **lines;
-    char    *cmd;
-    char    **path;
-    char    **envcpy;
+	t_dlst   *env;
+	char    *line;
+	char    **lines;
+	char    *cmd;
+	char    **path;
+	char    **envcpy;
 }               t_tout;
 
-t_dlst  *new_dlst(void);
-t_double    *dlst_allelem(char *elem);
-t_dlst  *dlst_addbackw(t_dlst *dlst, t_double *dble);
-t_dlst  *dlst_delelem(t_dlst *dlst, char *elemdel);
-int     maj_dlst(t_dlst *dlst, t_double *elem);
-char    *ft_getenv(char **env, char *elem);
+t_dlst		*new_dlst(void);
+t_double	*dlst_allelem(char *elem);
+t_dlst		*dlst_addbackw(t_dlst *dlst, t_double *dble);
+t_dlst		*dlst_delelem(t_dlst *dlst, char *elemdel);
+int			maj_dlst(t_dlst *dlst, t_double *elem);
+char		*ft_getenv(char **env, char *elem);
+void		setenvnow(t_tout *tout);
+void		unsetenvnow(t_tout *tout);
+t_dlst		*setit(t_dlst *dlst, char *elem, char *modifelem);
+void		printenv(t_tout *tout);
 
 #endif

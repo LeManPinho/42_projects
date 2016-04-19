@@ -29,8 +29,7 @@ typedef struct		s_list
 void				ft_putstrtimespace(char const *s);
 void				ft_putstrspace(char const *s);
 void				ft_putstrtime(char const *s);
-char				*ft_strjoinslash(char const *s1, char const *s2);
-char				*ft_strjoinspace(char const *s1, char const *s2);
+char				*ft_strjoinchar(char const *s1, char const *s2, char c);
 int					ft_unbrlen(unsigned long long nbr, unsigned int base);
 char				*ft_ltoa(long int nb);
 char				*ft_realloc(void *str, int sizebase, int size);

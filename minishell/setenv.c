@@ -1,19 +1,18 @@
 #include "minishell.h"
 
-void	setenv(t_dlst *tout)
+void	setenvnow(t_tout *tout)
 {
-	setit(tout->env, tout->lines[2], ft_strjoinchar(tout->lines[2], tout->lines[3], '='));
+	setit(tout->env, tout->lines[1], ft_strjoinchar(tout->lines[1], tout->lines[2], '='));
 }
 
-void	unsetenv(t_tout *tout)
+void	unsetenvnow(t_tout *tout)
 {
-	dlst_delelem(tout->env, tout->lines[2]);
+	dlst_delelem(tout->env, tout->lines[1]);
 }
 
 t_dlst  *setit(t_dlst *dlst, char *elem, char *modifelem)
 {
 		t_double *tmp;
-		int     i;
 		
 		tmp = dlst->head;
 		if (dlst)
@@ -28,7 +27,7 @@ t_dlst  *setit(t_dlst *dlst, char *elem, char *modifelem)
 				}
 				tmp = tmp->next;
 			}
-			dlst_addbackw(dlst, dlst_allelem(elem));
+			dlst_addbackw(dlst, dlst_allelem(modifelem));
 		}
 		return (dlst);
 }

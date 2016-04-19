@@ -15,8 +15,7 @@ NAME =	libft.a
 SRC =	./ft_putstrtimespace.c \
 	./ft_putstrspace.c \
 	./ft_putstrtime.c \
-	./ft_strjoinspace.c \
-	./ft_strjoinslash.c \
+	./ft_strjoinchar.c \
 	./ft_putnbrulong.c \
 		./ft_ltoa.c \
 		./ft_realloc.c \

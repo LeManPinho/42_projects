@@ -5,6 +5,7 @@ NAME =  minishell
 SRC  =  ./main.c \
 		    ./dlst.c \
 		    ./get_next_line.c \
+		    ./setenv.c \
 
 OBJ =	$(SRC:.c=.o)
 

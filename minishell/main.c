@@ -75,6 +75,12 @@ int   main(int ac, char **av, char **env)
 		{
 			tout->lines = ft_strsplit(tout->line, ' ');
 			tout->cmd = ft_strdup(tout->lines[0]);
+			if (ft_strcmp(tout->cmd, "setenv") == 0)
+				setenvnow(tout);
+			if (ft_strcmp(tout->cmd, "unsetenv") == 0)
+				unsetenvnow(tout);
+			if (ft_strcmp(tout->cmd, "env") == 0)
+				printenv(tout);
 			while (tout->path[++i])
 			{
 				if (ft_strcmp(tout->cmd, "exit") == 0)
