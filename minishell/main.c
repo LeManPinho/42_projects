@@ -55,11 +55,35 @@ t_tout  *inittout(char **env)
 	return (tout);
 }
 
+int		tests(t_tout *tout)
+{
+	if (ft_strcmp(tout->cmd, "setenv") == 0)
+	{
+		setenvnow(tout);
+		return (1);
+	}
+	else if (ft_strcmp(tout->cmd, "unsetenv") == 0)
+	{
+		unsetenvnow(tout);
+		return (1);
+	}
+	else if (ft_strcmp(tout->cmd, "env") == 0)
+	{
+		printenv(tout);
+		return (1);
+	}
+	else if (ft_strcmp(tout->cmd, "cd") == 0)
+	{
+		gocd(tout);
+		return (1);
+	}
+	return (0);
+}
+
 int   main(int ac, char **av, char **env)
 {
 	t_tout    *tout;
 	int		i;
-	pid_t 	papa;
   
 	(void)ac;
 	(void)av;
@@ -75,33 +99,11 @@ int   main(int ac, char **av, char **env)
 		{
 			tout->lines = ft_strsplit(tout->line, ' ');
 			tout->cmd = ft_strdup(tout->lines[0]);
-			if (ft_strcmp(tout->cmd, "setenv") == 0)
-				setenvnow(tout);
-			if (ft_strcmp(tout->cmd, "unsetenv") == 0)
-				unsetenvnow(tout);
-			if (ft_strcmp(tout->cmd, "env") == 0)
-				printenv(tout);
-			if (ft_strcmp(tout->cmd, "cd") == 0)
-				gocd(tout);
-			while (tout->path[++i])
-			{
-				if (ft_strcmp(tout->cmd, "exit") == 0)
-					return (0);
-				papa = fork();
-				if (papa == -1)
-				{
-					ft_putstr("fork");
-					exit(EXIT_FAILURE);
-				}
-				if (papa == 0)
-				{
-					execve(ft_strjoinchar(tout->path[i], tout->cmd, '/'), tout->lines, tout->envcpy);
-					exit(EXIT_SUCCESS);
-				}
-				if (papa > 0)
-					wait(NULL);
-			}
+			if (ft_strcmp(tout->cmd, "exit") == 0)
+				return (0);
+			if (tests(tout) == 0)
+				dothefork(tout);
 		}
 	}
-  return (0);
+	return (0);
 }

@@ -7,6 +7,7 @@ SRC  =  ./main.c \
 		    ./get_next_line.c \
 		    ./setenv.c \
 		    ./cd.c \
+		    ./fork.c \
 
 OBJ =	$(SRC:.c=.o)
 

@@ -52,5 +52,7 @@ void		printenv(t_tout *tout);
 char		*getvarenv(t_tout *tout, char *var);
 void		gocd(t_tout *tout);
 void		maj_oldpwd(t_tout *tout);
+int			tests(t_tout *tout);
+void		dothefork(t_tout *tout);
 
 #endif
