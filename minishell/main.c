@@ -14,28 +14,28 @@ void	ft_puttab(char **tab)
 
 char  *ft_getenv(char **env, char *elem)
 {
-  int i;
-  unsigned int u;
-  int o;
-  
-  i = 0;
-  while (env[i])
-  {
-	u = 0;
-	o = 0;
-	while (u < ft_strlen(elem) && o != -1)
+	int i;
+	unsigned int u;
+	int o;
+
+	i = 0;
+	while (env[i])
 	{
-	  if (env[i][u] != elem[u])
-		o = -1;
-	  else
-		u++;
+		u = 0;
+		o = 0;
+		while (u < ft_strlen(elem) && o != -1)
+		{
+			if (env[i][u] != elem[u])
+				o = -1;
+			else
+				u++;
+		}
+		if (u == ft_strlen(elem))
+			return (env[i]);
+		else
+			i++;
 	}
-	if (u == ft_strlen(elem))
-	  return (env[i]);
-	else
-	  i++;
-  }
-  return (NULL);
+	return (NULL);
 }
 
 t_tout  *inittout(char **env)
@@ -83,14 +83,12 @@ int		tests(t_tout *tout)
 int   main(int ac, char **av, char **env)
 {
 	t_tout    *tout;
-	int		i;
   
 	(void)ac;
 	(void)av;
 	tout = inittout(env);
 	while (93)
 	{
-		i = -1;
 		ft_putstr("$> ");
 		get_next_line(0, &(tout->line));
 		if (ft_strcmp(tout->line, "\0") == 0)
