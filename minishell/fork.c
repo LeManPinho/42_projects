@@ -11,7 +11,7 @@ void	dothefork(t_tout *tout)
 		papa = fork();
 		if (papa == -1)
 		{
-			ft_putstr("error fork");
+			ft_putstr("fork error");
 			exit(EXIT_FAILURE);
 		}
 		if (papa == 0)
