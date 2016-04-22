@@ -8,6 +8,7 @@ SRC  =  ./main.c \
 		    ./setenv.c \
 		    ./cd.c \
 		    ./fork.c \
+		    ./isallspace.c \
 
 OBJ =	$(SRC:.c=.o)
 
