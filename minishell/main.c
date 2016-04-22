@@ -59,7 +59,12 @@ int		tests(t_tout *tout)
 {
 	if (ft_strcmp(tout->cmd, "setenv") == 0)
 	{
-		setenvnow(tout);
+		if (!(ft_isalpha(tout->lines[1][0])))
+			ft_putendl("setenv: Variable name must begin with a letter.");
+		else if (!(is_str_alnum(tout->lines[1])))
+			ft_putendl("setenv: Variable name must contain alphanumeric characters.");
+		else
+			setenvnow(tout);
 		return (1);
 	}
 	else if (ft_strcmp(tout->cmd, "unsetenv") == 0)
@@ -91,7 +96,7 @@ int   main(int ac, char **av, char **env)
 	{
 		ft_putstr("$> ");
 		get_next_line(0, &(tout->line));
-		if (ft_strcmp(tout->line, "\0") == 0)
+		if ((ft_strcmp(tout->line, "\0") == 0) || (ft_strcmp(tout->line, " ") == 0))
 			wait(NULL);
 		else
 		{

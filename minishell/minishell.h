@@ -54,5 +54,6 @@ void		gocd(t_tout *tout);
 void		maj_oldpwd(t_tout *tout);
 int			tests(t_tout *tout);
 void		dothefork(t_tout *tout);
+int			is_str_alnum(char *str);
 
 #endif

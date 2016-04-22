@@ -11,7 +11,7 @@ void	dothefork(t_tout *tout)
 		papa = fork();
 		if (papa == -1)
 		{
-			ft_putstr("error fork");
+			ft_putstr("Fork Error");
 			exit(EXIT_FAILURE);
 		}
 		if (papa == 0)
@@ -22,4 +22,18 @@ void	dothefork(t_tout *tout)
 		if (papa > 0)
 			wait(NULL);
 	}
+}
+
+int		is_str_alnum(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!(ft_isalnum(str[i])))
+			return (0);
+		i++;
+	}
+	return (1);
 }
