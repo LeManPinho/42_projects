@@ -39,7 +39,7 @@ typedef struct  s_tout
 	char	*oldpwd;
 }               t_tout;
 
-int             isallspace(char *str);
+int			isallspace(char *str);
 t_dlst		*new_dlst(void);
 t_double	*dlst_allelem(char *elem);
 t_dlst		*dlst_addbackw(t_dlst *dlst, t_double *dble);

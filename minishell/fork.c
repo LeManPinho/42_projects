@@ -16,8 +16,14 @@ void	dothefork(t_tout *tout)
 		}
 		if (papa == 0)
 		{
-                    execve(ft_strjoinchar(tout->path[i], tout->cmd, '/'), tout->lines, tout->envcpy);
-                    exit(EXIT_SUCCESS);
+			if (access(tout->path[i], F_OK) == 0)
+			{
+				if (access(tout->path[i], X_OK) == 0)
+				{
+					execve(ft_strjoinchar(tout->path[i], tout->cmd, '/'), tout->lines, tout->envcpy);
+					exit(EXIT_SUCCESS);
+				}
+			}
 		}
 		if (papa > 0)
 			wait(NULL);

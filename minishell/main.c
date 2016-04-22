@@ -100,8 +100,8 @@ int   main(int ac, char **av, char **env)
 			wait(NULL);
 		else
 		{
-                        tout->lines = ft_strsplit(tout->line, ' ');
-                        tout->cmd = ft_strdup(tout->lines[0]);
+			tout->lines = ft_strsplit(tout->line, ' ');
+			tout->cmd = ft_strdup(tout->lines[0]);
 			if (ft_strcmp(tout->cmd, "exit") == 0)
 				return (0);
 			if (tests(tout) == 0)

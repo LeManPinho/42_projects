@@ -17,6 +17,7 @@ SRC =	./ft_putstrtimespace.c \
 	./ft_putstrtime.c \
 	./ft_strjoinchar.c \
 	./ft_putnbrulong.c \
+	./ft_isspace.c \
 		./ft_ltoa.c \
 		./ft_realloc.c \
 		./size_bin.c \

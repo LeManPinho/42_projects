@@ -79,6 +79,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isprint(int c);
 int					ft_isascii(int c);
+int					ft_isspace(int c);
 size_t				ft_strlen(char const *s);
 char				*ft_strdup(char const *s1);
 char				*ft_strcat(char *s1, char const *s2);
