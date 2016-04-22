@@ -96,12 +96,12 @@ int   main(int ac, char **av, char **env)
 	{
 		ft_putstr("$> ");
 		get_next_line(0, &(tout->line));
-		if ((ft_strcmp(tout->line, "\0") == 0) || (ft_strcmp(tout->line, " ") == 0))
+		if ((ft_strcmp(tout->line, "\0") == 0) || (isallspace(tout->line) == 1))
 			wait(NULL);
 		else
 		{
-			tout->lines = ft_strsplit(tout->line, ' ');
-			tout->cmd = ft_strdup(tout->lines[0]);
+                        tout->lines = ft_strsplit(tout->line, ' ');
+                        tout->cmd = ft_strdup(tout->lines[0]);
 			if (ft_strcmp(tout->cmd, "exit") == 0)
 				return (0);
 			if (tests(tout) == 0)
