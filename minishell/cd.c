@@ -28,7 +28,7 @@ void	gocd(t_tout *tout)
 		tout->lines[1] = ft_strdup(getvarenv(tout, "HOME") + 5);
 	else if (ft_strncmp(tout->lines[1], "-", 1) == 0)
 		tout->lines[1] = ft_strdup(getvarenv(tout, "OLDPWD") + 7);
-	if (access(tout->lines[1], F_OK) == 0)
+	if (tout->lines[1] && access(tout->lines[1], F_OK) == 0)
 	{
 		if (access(tout->lines[1], X_OK) == 0)
 		{   
@@ -41,11 +41,13 @@ void	gocd(t_tout *tout)
 			ft_putendl(tout->lines[1]);
 		}
 	}
-	else
+	else if (tout->lines[1])
 	{
 		ft_putstr("cd: no such file or directory: ");
 		ft_putendl(tout->lines[1]);
 	}
+	else
+            maj_oldpwd(tout);
 }
 
 void	maj_oldpwd(t_tout *tout)

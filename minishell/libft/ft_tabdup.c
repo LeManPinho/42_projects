@@ -5,6 +5,8 @@ int		ft_tablen(char **tab)
 	int	i;
 
 	i = 0;
+        if (tab == NULL)
+            return (0);
 	while (tab[i])
 		i++;
 	return (i);
@@ -17,7 +19,7 @@ char	**ft_tabdup(char **tab)
 
 	i = 0;
 	ret = (char**)malloc(sizeof(char*) * ft_tablen(tab) + 1);
-	while (tab[i])
+	while (tab && tab[i])
 	{
 		ret[i] = ft_strdup(tab[i]);
 		i++;

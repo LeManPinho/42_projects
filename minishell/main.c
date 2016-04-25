@@ -46,12 +46,11 @@ t_tout  *inittout(char **env)
 	i = 0;
 	if (!(tout = (t_tout *)malloc(sizeof(t_tout))))
 		return (NULL);
-	tout->envcpy = ft_tabdup(env);
+        tout->envcpy = ft_tabdup(env);
 	tout->cmd = NULL;
 	tout->env = new_dlst();
 	while (env[i])
 		dlst_addbackw(tout->env, dlst_allelem(env[i++]));
-	tout->path = ft_strsplit(ft_getenv(tout->envcpy, "PATH="), ':');
 	return (tout);
 }
 
@@ -59,12 +58,7 @@ int		tests(t_tout *tout)
 {
 	if (ft_strcmp(tout->cmd, "setenv") == 0)
 	{
-		if (!(ft_isalpha(tout->lines[1][0])))
-			ft_putendl("setenv: Variable name must begin with a letter.");
-		else if (!(is_str_alnum(tout->lines[1])))
-			ft_putendl("setenv: Variable name must contain alphanumeric characters.");
-		else
-			setenvnow(tout);
+                setenvnow(tout);
 		return (1);
 	}
 	else if (ft_strcmp(tout->cmd, "unsetenv") == 0)
@@ -97,7 +91,7 @@ int   main(int ac, char **av, char **env)
 		ft_putstr("$> ");
 		get_next_line(0, &(tout->line));
 		if ((ft_strcmp(tout->line, "\0") == 0) || (isallspace(tout->line) == 1))
-			wait(NULL);
+			;
 		else
 		{
 			tout->lines = ft_strsplit(tout->line, ' ');

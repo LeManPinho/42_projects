@@ -18,8 +18,11 @@ char		*ft_strjoinchar(char const *s1, char const *s2, char c)
 	char	*str;
 	int		i;
 	int		j;
-
-	length = ft_strlen(s1) + ft_strlen(s2) + 1;
+        
+        if (s2)
+            length = ft_strlen(s1) + ft_strlen(s2) + 1;
+        else
+            length = ft_strlen(s1) + 1;
 	str = (char*)malloc(sizeof(char) * (length + 1));
 	if (str == NULL)
 		return (NULL);
@@ -32,7 +35,7 @@ char		*ft_strjoinchar(char const *s1, char const *s2, char c)
 		i++;
 	}
 	j = -1;
-	while (s2[++j] != '\0')
+	while (s2 && s2[++j] != '\0')
 	{
 		str[i] = s2[j];
 		i++;

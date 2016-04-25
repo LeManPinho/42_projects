@@ -2,7 +2,10 @@
 
 void	setenvnow(t_tout *tout)
 {
-	setit(tout->env, tout->lines[1], ft_strjoinchar(tout->lines[1], tout->lines[2], '='));
+	if (tout->lines[1] != NULL)
+            setit(tout->env, tout->lines[1], ft_strjoinchar(tout->lines[1], tout->lines[2], '='));
+        else
+            printenv(tout);
 }
 
 void	unsetenvnow(t_tout *tout)
