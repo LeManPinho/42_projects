@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hjacque <hjacque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/13 02:09:03 by hjacque           #+#    #+#             */
-/*   Updated: 2016/01/25 13:31:53 by hjacque          ###   ########.fr       */
+/*   Updated: 2016/04/25 16:31:42 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstaddback(t_list *alst, t_list *new);
 char				**ft_tabdup(char **tab);
+int					ft_tablen(char **tab);
 
 #endif

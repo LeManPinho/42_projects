@@ -68,7 +68,8 @@ void	dothefork2(t_tout *tout)
 	int		i;
 	char *cmd;
 
-	free_tab(tout->envcpy, tout->env->lenght);
+	free_tab(tout->envcpy, ft_tablen(tout->envcpy));
+	tout->envcpy = env_i_stuff(tout);
 	i = -1;
 	if (ft_getenv(tout->envcpy, "PATH=") == NULL)
 		tout->path = ft_strsplit(" : ", ':');
@@ -76,10 +77,10 @@ void	dothefork2(t_tout *tout)
 		tout->path = ft_strsplit(ft_getenv(tout->envcpy, "PATH="), ':');
 	while (tout->path[++i])
 	{
-		if (ft_strncmp(tout->lines[2], "./", 2) == 0 || (ft_strncmp(tout->lines[2], "/", 1) == 0))
-			cmd = tout->lines[2];
+		if (ft_strncmp(tout->lines[ft_tablen(tout->lines) - 1], "./", 2) == 0 || (ft_strncmp(tout->lines[ft_tablen(tout->lines) - 1], "/", 1) == 0))
+			cmd = tout->lines[ft_tablen(tout->lines) - 1];
 		else
-			cmd = ft_strjoinchar(tout->path[i], tout->lines[2], '/');
+			cmd = ft_strjoinchar(tout->path[i], tout->lines[ft_tablen(tout->lines) - 1], '/');
 		if (access(cmd, F_OK) == 0)
 		{
 			if (access(cmd, X_OK) == 0)
@@ -108,4 +109,20 @@ void	dothefork2(t_tout *tout)
 		ft_putstr("minishell: command not found: ");
 		ft_putendl(tout->cmd);
 	}
+}
+
+char	**env_i_stuff(t_tout *tout)
+{
+	char	**ret;
+	int		i;
+
+	i = 2;
+	ret = (char**)malloc(sizeof(char*) * ft_tablen(tout->lines) - 2);
+	while (i < ft_tablen(tout->lines) - 1)
+	{
+		ret[i - 2] = ft_strdup(tout->lines[i]);
+		i++;
+	}
+	ret[i - 2] = NULL;
+	return (ret);
 }

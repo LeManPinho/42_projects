@@ -59,5 +59,6 @@ int			is_str_alnum(char *str);
 char		**lst_to_tab(t_tout *tout);
 void		free_tab(char **tab, int size);
 void		dothefork2(t_tout *tout);
+char		**env_i_stuff(t_tout *tout);
 
 #endif
