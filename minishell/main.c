@@ -46,7 +46,7 @@ t_tout  *inittout(char **env)
 	i = 0;
 	if (!(tout = (t_tout *)malloc(sizeof(t_tout))))
 		return (NULL);
-        tout->envcpy = ft_tabdup(env);
+		tout->envcpy = ft_tabdup(env);
 	tout->cmd = NULL;
 	tout->env = new_dlst();
 	while (env[i])
@@ -58,7 +58,7 @@ int		tests(t_tout *tout)
 {
 	if (ft_strcmp(tout->cmd, "setenv") == 0)
 	{
-                setenvnow(tout);
+		setenvnow(tout);
 		return (1);
 	}
 	else if (ft_strcmp(tout->cmd, "unsetenv") == 0)

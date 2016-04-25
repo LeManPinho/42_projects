@@ -9,6 +9,7 @@ SRC  =  ./main.c \
 		    ./cd.c \
 		    ./fork.c \
 		    ./isallspace.c \
+		    ./lst_to_tab.c \
 
 OBJ =	$(SRC:.c=.o)
 

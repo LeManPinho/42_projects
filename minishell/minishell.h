@@ -56,5 +56,7 @@ void		maj_oldpwd(t_tout *tout);
 int			tests(t_tout *tout);
 void		dothefork(t_tout *tout);
 int			is_str_alnum(char *str);
+char		**lst_to_tab(t_tout *tout);
+void		free_tab(char **tab, int size);
 
 #endif
