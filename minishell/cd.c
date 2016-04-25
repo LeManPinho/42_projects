@@ -47,7 +47,7 @@ void	gocd(t_tout *tout)
 		ft_putendl(tout->lines[1]);
 	}
 	else
-            maj_oldpwd(tout);
+           maj_oldpwd(tout);
 }
 
 void	maj_oldpwd(t_tout *tout)

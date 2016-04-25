@@ -46,7 +46,7 @@ t_tout  *inittout(char **env)
 	i = 0;
 	if (!(tout = (t_tout *)malloc(sizeof(t_tout))))
 		return (NULL);
-		tout->envcpy = ft_tabdup(env);
+	tout->envcpy = ft_tabdup(env);
 	tout->cmd = NULL;
 	tout->env = new_dlst();
 	while (env[i])
@@ -68,7 +68,10 @@ int		tests(t_tout *tout)
 	}
 	else if (ft_strcmp(tout->cmd, "env") == 0)
 	{
-		printenv(tout);
+		if (!(tout->lines[1]))
+			printenv(tout);
+		else if (ft_strcmp(tout->lines[1], "-i") == 0 && tout->lines[2])
+			dothefork2(tout);
 		return (1);
 	}
 	else if (ft_strcmp(tout->cmd, "cd") == 0)
