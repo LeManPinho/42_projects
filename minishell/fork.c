@@ -12,7 +12,7 @@ void	dothefork(t_tout *tout)
         else
             tout->path = ft_strsplit(ft_getenv(tout->envcpy, "PATH="), ':');
 	while (tout->path[++i])
-        {
+{
             if (ft_strncmp(tout->cmd, "./", 2) == 0 || (ft_strncmp(tout->cmd, "/", 1) == 0))
                 cmd = tout->cmd;
             else
