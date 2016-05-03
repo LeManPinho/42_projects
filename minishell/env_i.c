@@ -19,6 +19,30 @@ int		tests_i(t_tout *tout)
 	return (0);
 }
 
+void	normegocd_i(t_tout *tout)
+{
+  if (tout->lines[ft_tablen(tout->lines) - 1] && access(tout->lines[ft_tablen(tout->lines) - 1], F_OK) == 0)
+    {
+      if (access(tout->lines[ft_tablen(tout->lines) - 1], X_OK) == 0)
+	{
+	  chdir(tout->lines[ft_tablen(tout->lines) - 1]);
+	  maj_oldpwd(tout);
+	}
+      else
+	{
+	  ft_putstr("cd: permission denied: ");
+	  ft_putendl(tout->lines[ft_tablen(tout->lines) - 1]);
+	}
+    }
+  else if (tout->lines[ft_tablen(tout->lines) - 1])
+    {
+      ft_putstr("cd: no such file or directory: ");
+      ft_putendl(tout->lines[ft_tablen(tout->lines) - 1]);
+    }
+  else
+    maj_oldpwd(tout);
+}
+
 void	gocd_i(t_tout *tout)
 {
 	char	*buff;
@@ -38,26 +62,7 @@ void	gocd_i(t_tout *tout)
 			return ;
 		tout->lines[ft_tablen(tout->lines) - 1] = ft_strdup(ft_getenv(tout->envcpy, "OLDPWD=") + 7);
 	}
-	if (tout->lines[ft_tablen(tout->lines) - 1] && access(tout->lines[ft_tablen(tout->lines) - 1], F_OK) == 0)
-	{
-		if (access(tout->lines[ft_tablen(tout->lines) - 1], X_OK) == 0)
-		{   
-			chdir(tout->lines[ft_tablen(tout->lines) - 1]);
-			maj_oldpwd(tout);
-		}
-		else
-		{
-			ft_putstr("cd: permission denied: ");
-			ft_putendl(tout->lines[ft_tablen(tout->lines) - 1]);
-		}
-	}
-	else if (tout->lines[ft_tablen(tout->lines) - 1])
-	{
-		ft_putstr("cd: no such file or directory: ");
-		ft_putendl(tout->lines[ft_tablen(tout->lines) - 1]);
-	}
-	else
-		maj_oldpwd(tout);
+	normegocd_i(tout);
 }
 
 void	printenvtab(char **tab)

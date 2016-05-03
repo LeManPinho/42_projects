@@ -17,6 +17,20 @@ char	*getvarenv(t_tout *tout, char *var)
 	return (NULL);
 }
 
+void	normegocd(t_tout *tout)
+{
+  if (access(tout->lines[1], X_OK) == 0)
+    {
+      chdir(tout->lines[1]);
+      maj_oldpwd(tout);
+    }
+  else
+    {
+      ft_putstr("cd: permission denied: ");
+      ft_putendl(tout->lines[1]);
+    }
+}
+
 void	gocd(t_tout *tout)
 {
 	char	*buff;
@@ -29,18 +43,7 @@ void	gocd(t_tout *tout)
 	else if (ft_strncmp(tout->lines[1], "-", 1) == 0)
 		tout->lines[1] = ft_strdup(getvarenv(tout, "OLDPWD") + 7);
 	if (tout->lines[1] && access(tout->lines[1], F_OK) == 0)
-	{
-		if (access(tout->lines[1], X_OK) == 0)
-		{   
-			chdir(tout->lines[1]);
-			maj_oldpwd(tout);
-		}
-		else
-		{
-			ft_putstr("cd: permission denied: ");
-			ft_putendl(tout->lines[1]);
-		}
-	}
+	  normegocd(tout);
 	else if (tout->lines[1])
 	{
 		ft_putstr("cd: no such file or directory: ");
