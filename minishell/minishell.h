@@ -39,6 +39,13 @@ typedef struct  s_tout
 	char	*oldpwd;
 }               t_tout;
 
+
+void		normefork1lol(t_tout *tout, char *cmd);
+int		normefork2lol(t_tout *tout, int i, char *cmd);
+void		normefork21lol(t_tout *tout, char *cmd);
+int		normefork22lol(t_tout *tout, int i, char *cmd);
+void		normegocd(t_tout *tout);
+void		normegocd_i(t_tout *tout);
 int			isallspace(char *str);
 t_dlst		*new_dlst(void);
 t_double	*dlst_allelem(char *elem);
