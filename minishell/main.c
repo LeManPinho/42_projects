@@ -71,7 +71,8 @@ int		tests(t_tout *tout)
 		if (!(tout->lines[1]))
 			printenv(tout);
 		else if (ft_strcmp(tout->lines[1], "-i") == 0 && tout->lines[2])
-			dothefork2(tout);
+			if (tests_i(tout) == 0)
+				dothefork2(tout);
 		return (1);
 	}
 	else if (ft_strcmp(tout->cmd, "cd") == 0)

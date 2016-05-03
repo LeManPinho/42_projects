@@ -10,6 +10,7 @@ SRC  =  ./main.c \
 		    ./fork.c \
 		    ./isallspace.c \
 		    ./lst_to_tab.c \
+		    ./env_i.c \
 
 OBJ =	$(SRC:.c=.o)
 

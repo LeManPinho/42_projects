@@ -54,18 +54,23 @@ void	maj_oldpwd(t_tout *tout)
 {
 	t_double	*gogo;
 
-	gogo = tout->env->head;
-	if (gogo)
+	if (getvarenv(tout, "OLDPWD") == NULL)
+		setit(tout->env, "OLDPWD", ft_strjoin("OLDPWD=", tout->oldpwd));
+	else
 	{
-		while (gogo)
+		gogo = tout->env->head;
+		if (gogo)
 		{
-			if (ft_strncmp(gogo->s, "OLDPWD", 6) == 0)
+			while (gogo)
 			{
-				ft_strdel(&gogo->s);
-				gogo->s = ft_strjoin("OLDPWD=", tout->oldpwd);
-				return ;
+				if (ft_strncmp(gogo->s, "OLDPWD", 6) == 0)
+				{
+					ft_strdel(&gogo->s);
+					gogo->s = ft_strjoin("OLDPWD=", tout->oldpwd);
+					return ;
+				}
+				gogo = gogo->next;
 			}
-			gogo = gogo->next;
 		}
 	}
 }
