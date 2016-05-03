@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/05/03 14:53:25 by apinho            #+#    #+#             */
+/*   Updated: 2016/05/03 15:23:18 by apinho           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	ft_puttab(char **tab)
@@ -12,11 +24,11 @@ void	ft_puttab(char **tab)
 	}
 }
 
-char  *ft_getenv(char **env, char *elem)
+char	*ft_getenv(char **env, char *elem)
 {
-	int i;
-	unsigned int u;
-	int o;
+	int				i;
+	unsigned int	u;
+	int				o;
 
 	i = 0;
 	while (env[i])
@@ -38,11 +50,11 @@ char  *ft_getenv(char **env, char *elem)
 	return (NULL);
 }
 
-t_tout  *inittout(char **env)
+t_tout	*inittout(char **env)
 {
-	t_tout *tout;
-	int     i;
-	
+	t_tout	*tout;
+	int		i;
+
 	i = 0;
 	if (!(tout = (t_tout *)malloc(sizeof(t_tout))))
 		return (NULL);
@@ -83,10 +95,10 @@ int		tests(t_tout *tout)
 	return (0);
 }
 
-int   main(int ac, char **av, char **env)
+int		main(int ac, char **av, char **env)
 {
-	t_tout    *tout;
-  
+	t_tout	*tout;
+
 	(void)ac;
 	(void)av;
 	tout = inittout(env);
