@@ -81,5 +81,8 @@ char				**env_i_stuff(t_tout *tout);
 int					tests_i(t_tout *tout);
 void				gocd_i(t_tout *tout);
 void				printenvtab(char **tab);
+void				accessfork(t_tout *tout, struct stat sb, char *cmd);
+char				*epur_str(char *str);
+
 
 #endif

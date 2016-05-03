@@ -98,6 +98,7 @@ int		tests(t_tout *tout)
 int		main(int ac, char **av, char **env)
 {
 	t_tout	*tout;
+	char	*epured;
 
 	(void)ac;
 	(void)av;
@@ -110,7 +111,8 @@ int		main(int ac, char **av, char **env)
 			;
 		else
 		{
-			tout->lines = ft_strsplit(tout->line, ' ');
+			epured = epur_str(tout->line);
+			tout->lines = ft_strsplit(epured, ' ');
 			tout->cmd = ft_strdup(tout->lines[0]);
 			if (ft_strcmp(tout->cmd, "exit") == 0)
 				return (0);

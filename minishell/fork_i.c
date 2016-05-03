@@ -28,8 +28,29 @@ void	normefork21lol(t_tout *tout, char *cmd)
 		waitpid(papa, NULL, WCONTINUED);
 }
 
+void	accessfork_i(t_tout *tout, struct stat sb, char *cmd)
+{
+	if (access(cmd, X_OK) == 0)
+	{
+		if (S_ISDIR(sb.st_mode))
+		{
+			ft_putstr(cmd);
+			ft_putendl(" is a directory");
+		}
+		else
+			normefork21lol(tout, cmd);
+	}
+	else
+	{
+		ft_putstr("minishell: permission denied: ");
+		ft_putendl(tout->lines[ft_tablen(tout->lines) - 1]);
+	}	
+}
+
 int		normefork22lol(t_tout *tout, int i, char *cmd)
 {
+	struct stat	sb;
+	
 	while (tout->path[++i])
 	{
 		if (ft_strncmp(tout->lines[ft_tablen(tout->lines) - 1], "./", 2) == 0\
@@ -39,15 +60,10 @@ int		normefork22lol(t_tout *tout, int i, char *cmd)
 		else
 			cmd = ft_strjoinchar(tout->path[i], \
 					tout->lines[ft_tablen(tout->lines) - 1], '/');
+		stat(cmd, &sb);
 		if (access(cmd, F_OK) == 0)
 		{
-			if (access(cmd, X_OK) == 0)
-				normefork21lol(tout, cmd);
-			else
-			{
-				ft_putstr("minishell: permission denied: ");
-				ft_putendl(tout->lines[ft_tablen(tout->lines) - 1]);
-			}
+			accessfork_i(tout, sb, cmd);
 			break ;
 		}
 	}
