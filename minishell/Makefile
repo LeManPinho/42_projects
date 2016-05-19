@@ -27,7 +27,7 @@ SRC  =  ./main.c \
 
 OBJ =	$(SRC:.c=.o)
 
-CFLAGS	+= -Wall -Wextra -Werror -g
+CFLAGS	+= -Wall -Wextra -Werror
 LDFLAGS	+= -Llibft -lft
 
 all: $(NAME)
