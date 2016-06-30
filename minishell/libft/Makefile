@@ -87,7 +87,7 @@ SRC =	./ft_putstrtimespace.c \
 
 DEST =	$(SRC:.c=.o)
 
-CFLAGS += -Wall -Wextra -Werror -g
+CFLAGS += -Wall -Wextra -Werror
 
 all: $(NAME)
 

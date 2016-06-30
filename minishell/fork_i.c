@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:59:07 by apinho            #+#    #+#             */
-/*   Updated: 2016/05/03 15:25:50 by apinho           ###   ########.fr       */
+/*   Updated: 2016/06/30 15:27:44 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ void	accessfork_i(t_tout *tout, struct stat sb, char *cmd)
 	{
 		ft_putstr("minishell: permission denied: ");
 		ft_putendl(tout->lines[ft_tablen(tout->lines) - 1]);
-	}	
+	}
 }
 
 int		normefork22lol(t_tout *tout, int i, char *cmd)
 {
 	struct stat	sb;
-	
+
 	while (tout->path[++i])
 	{
 		if (ft_strncmp(tout->lines[ft_tablen(tout->lines) - 1], "./", 2) == 0\

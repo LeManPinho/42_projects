@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 14:31:22 by apinho            #+#    #+#             */
-/*   Updated: 2016/05/03 15:09:46 by apinho           ###   ########.fr       */
+/*   Updated: 2016/06/30 16:09:04 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		isallspace(char *str)
 	unsigned int i;
 
 	i = 0;
-	while (str[i] == ' ')
+	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	if (i == (ft_strlen(str)))
 		return (1);

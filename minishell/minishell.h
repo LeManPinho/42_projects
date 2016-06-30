@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/03 15:23:30 by apinho            #+#    #+#             */
-/*   Updated: 2016/05/03 15:24:30 by apinho           ###   ########.fr       */
+/*   Created: 2016/06/30 15:32:49 by apinho            #+#    #+#             */
+/*   Updated: 2016/06/30 15:35:45 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include "libft/libft.h"
+# include "get_next_line.h"
 # include <sys/types.h>
 # include <dirent.h>
 # include <stdlib.h>
@@ -23,8 +25,6 @@
 # include <sys/time.h>
 # include <sys/resource.h>
 # include <signal.h>
-# include "libft/libft.h"
-# include "get_next_line.h"
 
 typedef struct		s_double
 {
@@ -83,6 +83,4 @@ void				gocd_i(t_tout *tout);
 void				printenvtab(char **tab);
 void				accessfork(t_tout *tout, struct stat sb, char *cmd);
 char				*epur_str(char *str);
-
-
 #endif
