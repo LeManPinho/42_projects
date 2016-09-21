@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:53:25 by apinho            #+#    #+#             */
-/*   Updated: 2016/05/03 15:23:18 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/21 23:45:28 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ t_tout	*inittout(char **env)
 	tout->envcpy = ft_tabdup(env);
 	tout->cmd = NULL;
 	tout->env = new_dlst();
+	tout->line = NULL;
 	while (env[i])
 		dlst_addbackw(tout->env, dlst_allelem(env[i++]));
 	return (tout);
@@ -111,12 +112,12 @@ int		main(int ac, char **av, char **env)
 			;
 		else
 		{
-			epured = epur_str(tout->line);
+			epured = epur_str(ft_strdup(tout->line));
 			tout->lines = ft_strsplit(epured, ' ');
 			tout->cmd = ft_strdup(tout->lines[0]);
 			if (ft_strcmp(tout->cmd, "exit") == 0)
 				return (0);
-			if (tests(tout) == 0)
+			if (tests(tout) == 0 && testecho(tout) == 0)
 				dothefork(tout);
 		}
 	}

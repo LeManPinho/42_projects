@@ -6,61 +6,54 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/21 16:44:56 by apinho            #+#    #+#             */
-/*   Updated: 2016/05/03 15:01:45 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/21 23:05:18 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft/libft.h"
 
-static void		endit(char **line, char **stock)
+static int          ft_get_last_line(char **line, char **stck, t_var *v)
 {
-	size_t			len;
-	char			*tempo;
-
-	len = ft_strchr(*stock, '\n') - *stock;
-	tempo = *stock;
-	*line = ft_strsub(tempo, 0, len);
-	*stock = ft_strdup(tempo + len + 1);
-	free(tempo);
+    int             len;
+ 
+    len = ft_strlen(v->tmp);
+    if (v->i == 0 && len > 0)
+    {
+        *line = ft_strncpy(ft_strnew(len), v->tmp, len);
+        free(v->tmp);
+        free(v->buf);
+        ft_bzero(*stck, BUFF_SIZE);
+        v->i = 1;
+    }
+    else
+        *line = NULL;
+    return (v->i);
 }
-
-static int		endoffile(char **line, char **stock)
+ 
+int                 get_next_line(int const fd, char **line)
 {
-	if (ft_strchr(*stock, '\n') != NULL)
-	{
-		endit(line, stock);
-		return (1);
-	}
-	*line = ft_strdup(*stock);
-	ft_strdel(stock);
-	return (0);
-}
-
-int				get_next_line(int fd, char **line)
-{
-	char			buf[BUFF_SIZE + 1];
-	int				ret;
-	static char		*stock = NULL;
-	char			*tempo;
-
-	ret = 0;
-	if (fd < 0 || BUFF_SIZE <= 0 || line == NULL)
-		return (-1);
-	if (stock == NULL)
-		stock = ft_strnew(BUFF_SIZE + 1);
-	while (stock != NULL
-			&& ft_strchr(stock, '\n') == NULL
-			&& ((ret = read(fd, buf, BUFF_SIZE)) > 0))
-	{
-		buf[ret] = '\0';
-		tempo = stock;
-		stock = ft_strjoin(tempo, buf);
-		free(tempo);
-	}
-	if (ret == -1)
-		return (-1);
-	if (ret == 0)
-		return (endoffile(line, &stock));
-	endit(line, &(stock));
-	return (1);
+    static char     *stck;
+    t_var           v;
+ 
+    if (BUFF_SIZE < 1 || !line)
+        return (-1);
+    stck = (stck == NULL) ? ft_strnew(BUFF_SIZE) : stck;
+    if (!(v.buf = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1))) \
+        || !(v.tmp = ft_strncpy(ft_strnew(BUFF_SIZE), stck, BUFF_SIZE)))
+        return (-1);
+    while (ft_strchr(v.tmp, '\n') == 0)
+    {
+        if ((v.i = read(fd, v.buf, BUFF_SIZE)) < 1)
+            return (ft_get_last_line(line, &stck, &v));
+        v.buf[v.i] = '\0';
+        v.tmp = ft_strjoinfree(v.tmp, v.buf, 1);
+    }
+    free(v.buf);
+    v.i = (size_t)(ft_strchr(v.tmp, '\n') - v.tmp);
+    *line = ft_strncpy(ft_strnew(v.i), v.tmp, v.i);
+    ft_bzero(stck, BUFF_SIZE);
+    stck = ft_strncpy(stck, ft_strchr(v.tmp, '\n') + 1, BUFF_SIZE);
+    free(v.tmp);
+    return (1);
 }

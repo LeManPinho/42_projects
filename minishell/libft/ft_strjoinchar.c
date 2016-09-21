@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft-strjoinslash.c                                  :+:      :+:    :+:   */
+/*   ft_strjoinchar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hjacque <hjacque@student.42.fr>            +#+  +:+       +#+        */
+/*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/19 16:36:37 by hjacque           #+#    #+#             */
-/*   Updated: 2016/03/19 19:12:13 by hjacque          ###   ########.fr       */
+/*   Updated: 2016/09/20 15:30:37 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,9 @@ char		*ft_strjoinchar(char const *s1, char const *s2, char c)
 	char	*str;
 	int		i;
 	int		j;
-        
-        if (s2)
-            length = ft_strlen(s1) + ft_strlen(s2) + 1;
-        else
-            length = ft_strlen(s1) + 1;
-	str = (char*)malloc(sizeof(char) * (length + 1));
-	if (str == NULL)
+
+	length = (s2) ? ft_strlen(s1) + ft_strlen(s2) + 1 : ft_strlen(s1) + 1;
+	if (!(str = (char*)malloc(sizeof(char) * (length + 1))))
 		return (NULL);
 	i = -1;
 	while (s1[++i] != '\0')

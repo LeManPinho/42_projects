@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 15:32:49 by apinho            #+#    #+#             */
-/*   Updated: 2016/06/30 15:35:45 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/21 23:31:08 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ typedef struct		s_tout
 	char			**path;
 	char			**envcpy;
 	char			*oldpwd;
+	char			*echoline;
+	char			**echolines;
+	char			**echodq;
 }					t_tout;
 
 void				normefork1lol(t_tout *tout, char *cmd);
@@ -83,4 +86,7 @@ void				gocd_i(t_tout *tout);
 void				printenvtab(char **tab);
 void				accessfork(t_tout *tout, struct stat sb, char *cmd);
 char				*epur_str(char *str);
+int					testecho(t_tout *tout);
+void				echonow(t_tout *tout);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/13 02:09:03 by hjacque           #+#    #+#             */
-/*   Updated: 2016/04/25 16:31:42 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/21 23:04:16 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+char            	*ft_strjoinfree(char *s1, char *s2, int flag_str_to_free);
 void				ft_putstrtimespace(char const *s);
 void				ft_putstrspace(char const *s);
 void				ft_putstrtime(char const *s);
