@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fork_i.c                                           :+:      :+:    :+:   */
+/*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/03 14:59:07 by apinho            #+#    #+#             */
-/*   Updated: 2016/06/30 15:27:44 by apinho           ###   ########.fr       */
+/*   Created: 2016/05/03 14:58:13 by apinho            #+#    #+#             */
+/*   Updated: 2016/09/26 17:14:56 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-void	normefork21lol(t_tout *tout, char *cmd)
+void	normefork1lol(t_tout *tout, char *cmd)
 {
-	pid_t	papa;
+	pid_t papa;
 
 	papa = fork();
 	if (papa == -1)
@@ -28,7 +28,7 @@ void	normefork21lol(t_tout *tout, char *cmd)
 		waitpid(papa, NULL, WCONTINUED);
 }
 
-void	accessfork_i(t_tout *tout, struct stat sb, char *cmd)
+void	accessfork(t_tout *tout, struct stat sb, char *cmd)
 {
 	if (access(cmd, X_OK) == 0)
 	{
@@ -38,71 +38,69 @@ void	accessfork_i(t_tout *tout, struct stat sb, char *cmd)
 			ft_putendl(" is a directory");
 		}
 		else
-			normefork21lol(tout, cmd);
+			normefork1lol(tout, cmd);
 	}
 	else
 	{
 		ft_putstr("minishell: permission denied: ");
-		ft_putendl(tout->lines[ft_tablen(tout->lines) - 1]);
+		ft_putendl(tout->cmd);
 	}
 }
 
-int		normefork22lol(t_tout *tout, int i, char *cmd)
+int		normefork2lol(t_tout *tout, int i, char *cmd)
 {
 	struct stat	sb;
 
 	while (tout->path[++i])
 	{
-		if (ft_strncmp(tout->lines[ft_tablen(tout->lines) - 1], "./", 2) == 0\
-			|| (ft_strncmp(tout->lines[ft_tablen(tout->lines) - 1], "/", 1)\
-				== 0))
-			cmd = tout->lines[ft_tablen(tout->lines) - 1];
+		if (ft_strncmp(tout->cmd, "./", 2) == 0 || \
+				(ft_strncmp(tout->cmd, "/", 1) == 0))
+			cmd = tout->cmd;
 		else
-			cmd = ft_strjoinchar(tout->path[i], \
-					tout->lines[ft_tablen(tout->lines) - 1], '/');
+			cmd = ft_strjoinchar(tout->path[i], tout->cmd, '/');
 		stat(cmd, &sb);
 		if (access(cmd, F_OK) == 0)
 		{
-			accessfork_i(tout, sb, cmd);
+			accessfork(tout, sb, cmd);
 			break ;
 		}
 	}
 	return (i);
 }
 
-void	dothefork2(t_tout *tout)
+void	dothefork(t_tout *tout)
 {
 	int		i;
 	char	*cmd;
 
 	cmd = NULL;
-	free_tab(tout->envcpy, ft_tablen(tout->envcpy));
-	tout->envcpy = env_i_stuff(tout);
+	tout->envcpy = lst_to_tab(tout);
 	i = -1;
 	if (ft_getenv(tout->envcpy, "PATH=") == NULL)
 		tout->path = ft_strsplit(" : ", ':');
 	else
+	{
 		tout->path = ft_strsplit(ft_getenv(tout->envcpy, "PATH="), ':');
-	i = normefork22lol(tout, i, cmd);
+		tout->path[0] = ft_strstr(tout->path[0], "PATH=") + 5;
+	}
+	i = normefork2lol(tout, i, cmd);
 	if (tout->path[i] == NULL)
 	{
 		ft_putstr("minishell: command not found: ");
-		ft_putendl(tout->lines[ft_tablen(tout->lines) - 1]);
+		ft_putendl(tout->cmd);
 	}
 }
 
-char	**env_i_stuff(t_tout *tout)
+int		is_str_alnum(char *str)
 {
-	char	**ret;
 	int		i;
 
-	i = 2;
-	ret = (char**)malloc(sizeof(char*) * ft_tablen(tout->lines) - 2);
-	while (i < ft_tablen(tout->lines) - 1)
+	i = 0;
+	while (str[i])
 	{
-		ret[i - 2] = ft_strdup(tout->lines[i]);
+		if (!(ft_isalnum(str[i])))
+			return (0);
 		i++;
 	}
-	ret[i - 2] = NULL;
-	return (ret);
+	return (1);
 }

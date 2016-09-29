@@ -6,18 +6,25 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:35:08 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/21 23:45:28 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/26 17:15:05 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int		testecho(t_tout *tout)
 {
 	if (ft_strcmp(tout->cmd, "echo") == 0)
 	{
-		echonow(tout);
-		write(1, "\n", 1);
+		if (tout->lines[1][0] == '$')
+		{
+			echovarenv(tout);
+		}
+		else
+		{
+			echonow(tout);
+			write(1, "\n", 1);
+		}
 		return (1);
 	}
 	return (0);
@@ -49,5 +56,20 @@ void	echonow(t_tout *tout)
 			write(1, " ", 1);
 			t++;
 		}
+	}
+}
+
+void	echovarenv(t_tout *tout)
+{
+	char	*varenv;
+	char	*aprint;
+
+	varenv = ft_strstr(tout->lines[1], "$") + 1;
+	if (getvarenv(tout, varenv) == NULL)
+		write(1, "\n", 1);
+	else
+	{
+		aprint = ft_strstr(getvarenv(tout, varenv), "=") + 1;
+		ft_putendl(aprint);
 	}
 }

@@ -6,11 +6,11 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 14:31:22 by apinho            #+#    #+#             */
-/*   Updated: 2016/06/30 16:09:04 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/26 14:11:45 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int		isallspace(char *str)
 {

@@ -6,11 +6,11 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 15:20:50 by apinho            #+#    #+#             */
-/*   Updated: 2016/05/03 15:11:58 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/26 14:11:48 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 char	**lst_to_tab(t_tout *tout)
 {

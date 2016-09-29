@@ -6,11 +6,11 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:54:23 by apinho            #+#    #+#             */
-/*   Updated: 2016/05/03 15:19:53 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/26 14:11:13 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 int		tests_i(t_tout *tout)
 {

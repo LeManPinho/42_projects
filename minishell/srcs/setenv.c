@@ -6,11 +6,11 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:16:16 by apinho            #+#    #+#             */
-/*   Updated: 2016/05/03 15:20:46 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/26 14:11:53 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	setenvnow(t_tout *tout)
 {

@@ -6,11 +6,11 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:53:25 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/21 23:45:28 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/26 14:11:51 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 void	ft_puttab(char **tab)
 {

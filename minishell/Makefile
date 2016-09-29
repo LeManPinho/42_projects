@@ -6,7 +6,7 @@
 #    By: apinho <apinho@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/03 14:17:58 by apinho            #+#    #+#              #
-#    Updated: 2016/09/21 22:31:36 by apinho           ###   ########.fr        #
+#    Updated: 2016/09/26 14:10:11 by apinho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,17 @@ CC =	gcc
 
 NAME =  minishell
 
-SRC  =  ./main.c \
-		    ./dlst.c \
-		    ./get_next_line.c \
-		    ./setenv.c \
-		    ./cd.c \
-		    ./fork.c \
-		    ./isallspace.c \
-		    ./lst_to_tab.c \
-		    ./env_i.c \
-		    ./fork_i.c \
-		    ./testecho.c \
+SRC  =  ./srcs/main.c \
+		    ./srcs/dlst.c \
+		    ./srcs/get_next_line.c \
+		    ./srcs/setenv.c \
+		    ./srcs/cd.c \
+		    ./srcs/fork.c \
+		    ./srcs/isallspace.c \
+		    ./srcs/lst_to_tab.c \
+		    ./srcs/env_i.c \
+		    ./srcs/fork_i.c \
+		    ./srcs/testecho.c \
 
 OBJ =	$(SRC:.c=.o)
 

@@ -6,11 +6,11 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:54:12 by apinho            #+#    #+#             */
-/*   Updated: 2016/05/03 15:08:54 by apinho           ###   ########.fr       */
+/*   Updated: 2016/09/26 14:11:09 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
 t_dlst		*new_dlst(void)
 {
