@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/13 02:07:38 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/20 15:37:47 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/05 19:39:51 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,13 @@ char				**ft_strsplit(char const *s, char c)
 	size_t	j;
 	size_t	l;
 
-	ret = (char **)ft_memalloc(sizeof(char *) * ft_tab_len(s, c) + 1);
+	ret = (char **)ft_memalloc(sizeof(char *) * (ft_tab_len(s, c) + 1));
 	if (ret)
 	{
 		j = 0;
 		while (j < ft_tab_len(s, c))
 		{
-			ret[j] = (char *)ft_memalloc(ft_wl(j, s, c));
+			ret[j] = (char *)ft_memalloc(ft_wl(j, s, c) + 1);
 			if (ret[j])
 			{
 				i = ft_wi(j, s, c);

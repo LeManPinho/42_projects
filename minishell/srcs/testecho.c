@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/20 19:35:08 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/26 17:15:05 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/06 15:34:11 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ int		testecho(t_tout *tout)
 {
 	if (ft_strcmp(tout->cmd, "echo") == 0)
 	{
-		if (tout->lines[1][0] == '$')
+		if (!tout->lines[1])
 		{
-			echovarenv(tout);
+			write(1, "\n", 1);
+			return (1);
 		}
+		if (tout->lines[1][0] == '$')
+			echovarenv(tout);
 		else
 		{
 			echonow(tout);

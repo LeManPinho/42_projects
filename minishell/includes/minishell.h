@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/26 13:59:27 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/26 16:49:19 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/06 17:10:12 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,14 @@ typedef struct		s_tout
 	char			**path;
 	char			**envcpy;
 	char			*oldpwd;
+	char			*oldpwd2;
 	char			*echoline;
 	char			**echolines;
 	char			**echodq;
 	char			*homecd;
+	char			*epured;
+	char			*unset;
+	char			*strptr;
 }					t_tout;
 
 void				normefork1lol(t_tout *tout, char *cmd);
@@ -65,8 +69,8 @@ int					isallspace(char *str);
 t_dlst				*new_dlst(void);
 t_double			*dlst_allelem(char *elem);
 t_dlst				*dlst_addbackw(t_dlst *dlst, t_double *dble);
-t_dlst				*dlst_delelem(t_dlst *dlst, char *elemdel);
-int					maj_dlst(t_dlst *dlst, t_double *elem);
+t_dlst				*dlst_delelem(t_dlst *dlst, char *elemdel, t_tout *tout);
+void				maj_dlst(t_dlst *dlst, t_double *elem);
 char				*ft_getenv(char **env, char *elem);
 void				setenvnow(t_tout *tout);
 void				unsetenvnow(t_tout *tout);
@@ -79,7 +83,6 @@ int					tests(t_tout *tout);
 void				dothefork(t_tout *tout);
 int					is_str_alnum(char *str);
 char				**lst_to_tab(t_tout *tout);
-void				free_tab(char **tab, int size);
 void				dothefork2(t_tout *tout);
 char				**env_i_stuff(t_tout *tout);
 int					tests_i(t_tout *tout);
@@ -90,5 +93,13 @@ char				*epur_str(char *str);
 int					testecho(t_tout *tout);
 void				echonow(t_tout *tout);
 void				echovarenv(t_tout *tout);
+int					count_words(char *str);
+char				*get_to_unset(char *varenv, char *to_unset);
+void				free_tab(char **tab);
+void				mainstuff(t_tout *tout);
+void				freeall(t_tout *tout);
+void				freeall2(t_tout *tout);
+void				freedlst(t_dlst *dlst);
+void				gocd2(t_tout *tout);
 
 #endif

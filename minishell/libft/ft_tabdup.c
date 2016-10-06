@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 14:42:31 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/20 14:51:32 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/05 19:38:28 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**ft_tabdup(char **tab)
 	int		i;
 
 	i = 0;
-	ret = (char**)malloc(sizeof(char*) * ft_tablen(tab) + 1);
+	ret = (char**)malloc(sizeof(char*) * (ft_tablen(tab) + 1));
 	while (tab && tab[i])
 	{
 		ret[i] = ft_strdup(tab[i]);

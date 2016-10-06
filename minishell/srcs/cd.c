@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:53:13 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/26 14:11:08 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/06 17:18:19 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*getvarenv(t_tout *tout, char *var)
 void	normegocd(t_tout *tout)
 {
 	if (tout->homecd)
-		tout->lines[1] = ft_strjoin(tout->lines[1], tout->homecd);
+		tout->lines[1] = ft_strjoinfree(tout->lines[1], tout->homecd, 1);
 	if (access(tout->lines[1], F_OK) == 0)
 	{
 		if (access(tout->lines[1], X_OK) == 0)
@@ -59,18 +59,28 @@ void	gocd(t_tout *tout)
 
 	buff = NULL;
 	tout->homecd = NULL;
-	tout->oldpwd = getcwd(buff, 42);
-	tout->oldpwd = ft_strjoin(tout->oldpwd, "/");
+	tout->oldpwd2 = getcwd(buff, 42);
+	tout->oldpwd = ft_strjoin(tout->oldpwd2, "/");
+	free(tout->oldpwd2);
 	if (!tout->lines[1])
 		tout->lines[1] = ft_strdup(getvarenv(tout, "HOME") + 5);
 	else if (ft_strncmp(tout->lines[1], "~", 1) == 0)
 	{
 		if (ft_strlen(tout->lines[1]) > 1)
 			tout->homecd = ft_strdup(tout->lines[1] + 1);
+		free(tout->lines[1]);
 		tout->lines[1] = ft_strdup(getvarenv(tout, "HOME") + 5);
 	}
 	else if (ft_strncmp(tout->lines[1], "-", 1) == 0)
+	{
+		free(tout->lines[1]);
 		tout->lines[1] = ft_strdup(getvarenv(tout, "OLDPWD") + 7);
+	}
+	gocd2(tout);
+}
+
+void	gocd2(t_tout *tout)
+{
 	if (tout->lines[1] && access(tout->lines[1], F_OK) == 0)
 		normegocd(tout);
 	else if (tout->lines[1])
@@ -80,6 +90,8 @@ void	gocd(t_tout *tout)
 	}
 	else
 		maj_oldpwd(tout);
+	free(tout->oldpwd);
+	free(tout->homecd);
 }
 
 void	maj_oldpwd(t_tout *tout)

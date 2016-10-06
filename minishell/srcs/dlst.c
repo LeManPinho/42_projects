@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:54:12 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/26 14:11:09 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/06 14:49:18 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,34 +60,33 @@ t_dlst		*dlst_addbackw(t_dlst *dlst, t_double *dble)
 	return (dlst);
 }
 
-t_dlst		*dlst_delelem(t_dlst *dlst, char *elemdel)
+t_dlst		*dlst_delelem(t_dlst *dlst, char *elemdel, t_tout *tout)
 {
 	t_double	*tmp;
-	int			i;
 
 	tmp = dlst->head;
-	i = 0;
 	if (dlst)
-		while (tmp && !i)
+		while (tmp)
 		{
-			if (ft_strncmp(tmp->s, elemdel, ft_strlen(elemdel)) == 0)
+			tout->unset = get_to_unset(tmp->s, tout->unset);
+			if (ft_strncmp(tout->unset, elemdel, ft_strlen(tout->unset)) == 0)
 			{
+				free(tout->unset);
 				if (!tmp->next && !tmp->prev)
-				{
 					ft_strdel(&dlst->head->s);
-					free(dlst);
-				}
 				else
-					i = maj_dlst(dlst, tmp);
+					maj_dlst(dlst, tmp);
 				dlst->lenght--;
-				free(tmp);
+				break ;
 			}
+			free(tout->unset);
 			tmp = tmp->next;
 		}
+	free(tmp);
 	return (dlst);
 }
 
-int			maj_dlst(t_dlst *dlst, t_double *elem)
+void		maj_dlst(t_dlst *dlst, t_double *elem)
 {
 	if (!elem->next && elem->prev)
 	{
@@ -107,6 +106,4 @@ int			maj_dlst(t_dlst *dlst, t_double *elem)
 		elem->next->prev = elem->prev;
 		ft_strdel(&elem->s);
 	}
-	dlst->lenght--;
-	return (1);
 }

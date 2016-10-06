@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:53:25 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/26 14:11:51 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/06 17:28:01 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ t_tout	*inittout(char **env)
 	i = 0;
 	if (!(tout = (t_tout *)malloc(sizeof(t_tout))))
 		return (NULL);
-	tout->envcpy = ft_tabdup(env);
 	tout->cmd = NULL;
 	tout->env = new_dlst();
 	tout->line = NULL;
+	tout->oldpwd = NULL;
 	while (env[i])
 		dlst_addbackw(tout->env, dlst_allelem(env[i++]));
 	return (tout);
@@ -99,7 +99,6 @@ int		tests(t_tout *tout)
 int		main(int ac, char **av, char **env)
 {
 	t_tout	*tout;
-	char	*epured;
 
 	(void)ac;
 	(void)av;
@@ -112,14 +111,16 @@ int		main(int ac, char **av, char **env)
 			;
 		else
 		{
-			epured = epur_str(ft_strdup(tout->line));
-			tout->lines = ft_strsplit(epured, ' ');
-			tout->cmd = ft_strdup(tout->lines[0]);
+			mainstuff(tout);
 			if (ft_strcmp(tout->cmd, "exit") == 0)
-				return (0);
+				break ;
 			if (tests(tout) == 0 && testecho(tout) == 0)
 				dothefork(tout);
+			freeall(tout);
 		}
+		free(tout->line);
 	}
+	freeall(tout);
+	freeall2(tout);
 	return (0);
 }

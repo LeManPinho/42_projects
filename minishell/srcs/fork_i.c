@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:59:07 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/26 14:11:19 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/05 19:08:31 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	dothefork2(t_tout *tout)
 	char	*cmd;
 
 	cmd = NULL;
-	free_tab(tout->envcpy, ft_tablen(tout->envcpy));
+	free_tab(tout->envcpy);
 	tout->envcpy = env_i_stuff(tout);
 	i = -1;
 	if (ft_getenv(tout->envcpy, "PATH=") == NULL)

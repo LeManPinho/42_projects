@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:54:23 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/26 14:11:13 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/06 15:10:12 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		tests_i(t_tout *tout)
 {
 	if (ft_strcmp(tout->lines[ft_tablen(tout->lines) - 1], "env") == 0)
 	{
-		free_tab(tout->envcpy, ft_tablen(tout->envcpy));
+		free_tab(tout->envcpy);
 		tout->envcpy = env_i_stuff(tout);
 		printenvtab(tout->envcpy);
 		return (1);
@@ -24,7 +24,7 @@ int		tests_i(t_tout *tout)
 	else if ((ft_strcmp(tout->lines[ft_tablen(tout->lines) - 1], "cd") == 0)\
 		|| (ft_strcmp(tout->lines[ft_tablen(tout->lines) - 2], "cd") == 0))
 	{
-		free_tab(tout->envcpy, ft_tablen(tout->envcpy));
+		free_tab(tout->envcpy);
 		tout->envcpy = env_i_stuff(tout);
 		gocd_i(tout);
 		return (1);
@@ -69,14 +69,14 @@ void	gocd_i(t_tout *tout)
 		if (ft_getenv(tout->envcpy, "HOME=") == NULL)
 			return ;
 		tout->lines[ft_tablen(tout->lines) - 1] = \
-			ft_strdup(ft_getenv(tout->envcpy, "HOME=") + 5);
+			ft_strdupfree(ft_getenv(tout->envcpy, "HOME=") + 5);
 	}
 	else if (ft_strncmp(tout->lines[ft_tablen(tout->lines) - 1], "-", 1) == 0)
 	{
 		if (ft_getenv(tout->envcpy, "OLDPWD=") == NULL)
 			return ;
 		tout->lines[ft_tablen(tout->lines) - 1] = \
-			ft_strdup(ft_getenv(tout->envcpy, "OLDPWD=") + 7);
+			ft_strdupfree(ft_getenv(tout->envcpy, "OLDPWD=") + 7);
 	}
 	normegocd_i(tout);
 }

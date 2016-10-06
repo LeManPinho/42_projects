@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/13 02:09:03 by hjacque           #+#    #+#             */
-/*   Updated: 2016/09/26 11:59:30 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/06 15:08:10 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstaddback(t_list *alst, t_list *new);
 char				**ft_tabdup(char **tab);
 int					ft_tablen(char **tab);
+char				*ft_strdupfree(char *s1);
 
 #endif

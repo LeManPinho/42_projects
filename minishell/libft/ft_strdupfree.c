@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strdupfree.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/11/13 02:06:52 by apinho            #+#    #+#             */
-/*   Updated: 2016/10/05 20:23:30 by apinho           ###   ########.fr       */
+/*   Created: 2016/10/06 15:07:40 by apinho            #+#    #+#             */
+/*   Updated: 2016/10/06 15:07:43 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dest, char const *src, size_t n)
+char	*ft_strdupfree(char *s1)
 {
 	int		i;
-	char	*x;
+	int		len;
+	char	*str;
 
-	x = dest;
+	len = 0;
+	while (s1[len])
+		len++;
+	if (!(str = (char*)malloc(sizeof(char) * (len + 1))))
+		return (NULL);
 	i = 0;
-	if (n > 0 && src[i] != '\0')
+	while (s1[i])
 	{
-		while (n > 0 && src[i] != '\0')
-		{
-			dest[i] = src[i];
-			i++;
-			n--;
-		}
+		str[i] = s1[i];
+		i++;
 	}
-	if (n > 0)
-	{
-		while (n > 0)
-		{
-			dest[i] = '\0';
-			i++;
-			n--;
-		}
-	}
-	return (x);
+	str[i] = '\0';
+	free(s1);
+	return (str);
 }

@@ -6,7 +6,7 @@
 #    By: apinho <apinho@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/09/20 15:38:21 by apinho            #+#    #+#              #
-#    Updated: 2016/09/21 23:05:47 by apinho           ###   ########.fr        #
+#    Updated: 2016/10/06 17:35:04 by apinho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,10 +85,11 @@ SRC =	./ft_putstrtimespace.c \
 		./ft_lstmap.c \
 		./ft_tabdup.c \
 		./ft_strjoinfree.c \
+		./ft_strdupfree.c \
 
 DEST =	$(SRC:.c=.o)
 
-CFLAGS += -g -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror
 
 all: $(NAME)
 

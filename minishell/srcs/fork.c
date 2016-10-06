@@ -6,7 +6,7 @@
 /*   By: apinho <apinho@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/03 14:58:13 by apinho            #+#    #+#             */
-/*   Updated: 2016/09/26 17:14:56 by apinho           ###   ########.fr       */
+/*   Updated: 2016/10/06 17:06:16 by apinho           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,17 @@ int		normefork2lol(t_tout *tout, int i, char *cmd)
 	{
 		if (ft_strncmp(tout->cmd, "./", 2) == 0 || \
 				(ft_strncmp(tout->cmd, "/", 1) == 0))
-			cmd = tout->cmd;
+			cmd = ft_strdup(tout->cmd);
 		else
 			cmd = ft_strjoinchar(tout->path[i], tout->cmd, '/');
 		stat(cmd, &sb);
 		if (access(cmd, F_OK) == 0)
 		{
 			accessfork(tout, sb, cmd);
+			free(cmd);
 			break ;
 		}
+		free(cmd);
 	}
 	return (i);
 }
@@ -89,6 +91,10 @@ void	dothefork(t_tout *tout)
 		ft_putstr("minishell: command not found: ");
 		ft_putendl(tout->cmd);
 	}
+	if (ft_strncmp(tout->path[0], " ", 1) != 0)
+		tout->path[0] = tout->path[0] - 5;
+	free_tab(tout->path);
+	free_tab(tout->envcpy);
 }
 
 int		is_str_alnum(char *str)

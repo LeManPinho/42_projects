@@ -6,7 +6,7 @@
 #    By: apinho <apinho@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/05/03 14:17:58 by apinho            #+#    #+#              #
-#    Updated: 2016/09/26 14:10:11 by apinho           ###   ########.fr        #
+#    Updated: 2016/10/06 17:34:59 by apinho           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,11 @@ SRC  =  ./srcs/main.c \
 		    ./srcs/env_i.c \
 		    ./srcs/fork_i.c \
 		    ./srcs/testecho.c \
+		    ./srcs/other.c \
 
 OBJ =	$(SRC:.c=.o)
 
-CFLAGS	+= -g -Wall -Wextra -Werror
+CFLAGS	+= -Wall -Wextra -Werror
 LDFLAGS	+= -Llibft -lft
 
 all: $(NAME)
