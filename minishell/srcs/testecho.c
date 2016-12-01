@@ -47,7 +47,7 @@ void	echonow(t_tout *tout)
 		if (*t == '\"')
 		{
 			t++;
-			len = (!ft_strchr(t, '\"')) ? ft_strlen(t) : ft_strchr(t, '\"') - t;
+			len = (!ft_strchr(t, '\"')) ? ft_strlen(t) : (size_t)(ft_strchr(t, '\"') - t);
 		}
 		else
 			while (t[len] && !ft_isspace(t[len]))

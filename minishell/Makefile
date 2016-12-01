@@ -29,7 +29,7 @@ SRC  =  ./srcs/main.c \
 
 OBJ =	$(SRC:.c=.o)
 
-CFLAGS	+= -Wall -Wextra -Werror
+CFLAGS	+= -Wall -Wextra -Werror -I includes
 LDFLAGS	+= -Llibft -lft
 
 all: $(NAME)

@@ -106,7 +106,8 @@ int		main(int ac, char **av, char **env)
 	while (93)
 	{
 		ft_putstr("$> ");
-		get_next_line(0, &(tout->line));
+		if (get_next_line(0, &(tout->line)) == -1)
+                    return (0);
 		if ((ft_strcmp(tout->line, "\0") == 0) || (isallspace(tout->line) == 1))
 			;
 		else
