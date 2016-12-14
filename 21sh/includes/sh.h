@@ -28,13 +28,14 @@
 # define DMORE		7
 # define LESS		8
 # define MORE		9
-# define END_LINE	10
+# define SEMICOLON	10
+# define END_LINE	11
 
 typedef struct 			s_token
 {
-	int			type;
-	char		*lexeme;
-	t_token		*next;
+	int					type;
+	char				*lexeme;
+	struct s_token		*next;
 }						t_token;
 
 typedef struct 			s_all
@@ -44,12 +45,14 @@ typedef struct 			s_all
 	t_token				*token;
 }						t_all;
 
-void	check_ope(token, line, pos, i);
+void	check_ope(t_token *token, char *line, int pos, int i);
 int		ft_isprintnotope(char c);
 void	print_tokens(t_token *token);
 void	analise_line(t_all *all);
 int		lire_lexeme(t_token *token, char *line, int pos);
 void	add_lexeme(t_token *token, char *line, int pos, int i);
 int		ft_isope(char c);
+int		isallspace(char *str);
+char	*epur_str(char *str);
 
 #endif

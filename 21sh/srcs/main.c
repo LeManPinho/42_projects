@@ -1,4 +1,4 @@
-#include "../includes/21sh.h"
+#include "../includes/sh.h"
 
 int		main(void)
 {
@@ -10,42 +10,83 @@ int		main(void)
 	{
 		ft_putstr("$> ");
 		get_next_line(0, &(all->line));
-		if ((ft_strcmp(all->line, "\0") == 0) || (ft_isallspace(all->line) == 1))
+		if ((ft_strcmp(all->line, "\0") == 0) || (isallspace(all->line) == 1))
 			;
 		else
 		{
-			all->epured_line = epur_str(all->line);
-			analise_line(all->epured_line);
+			analise_line(all);
+			print_tokens(all->token);
 		}
 	}
 	return (0);
 }
 
-void	analise_line(char *line)
+void	analise_line(t_all *all)
 {
+	int			pos;
 
+	all->token = malloc(sizeof(t_token));
+	pos = 0;
+	while (all->line[pos])
+	{
+		pos = lire_lexeme(all->token, all->line , pos);
+		all->token = all->token->next;
+	}
 }
 
-char	*lire_lexeme(t_lexlst *lexlst, char *line, int pos)
+int		lire_lexeme(t_token *token, char *line, int pos)
 {
-	if (pos >= ft_strlen(line))
-		lexlst->type = END_LINE;
-	else
+	int		i;
+
+	i = 0;
+	if (line[pos] == '\"')
 	{
-		if (line[pos] == "SYMBOL")
-		{
-			lexlst->type = "SYMBOL";
-			"add line[pos] to lexeme";
+		token->type = SQUOTE;
+		i = pos + 1;
+		while (line[pos] != '\"')
 			pos++;
-		}
-		else if (ft_isprint(line[pos]) == 1)
-		{
-			lexlst->type = WORDS;
-			while (ft_isalnum(line[pos]) == 1)
-			{
-				"add line[pos] to lexlst->lexeme";
-				pos++;
-			}
-		}
+		add_lexeme(token, line, pos, i);
 	}
+	else if (line[pos] == '\'')
+	{
+		token->type = DQUOTE;
+		i = pos + 1;
+		while (line[pos] != '\'')
+			pos++;
+		add_lexeme(token, line, pos, i);
+	}		
+	else if (ft_isprintnotope(line[pos]) == 1)
+	{
+		token->type = WORDS;
+		i = pos;
+		while (ft_isprintnotope(line[pos]) == 1)
+			pos++;
+		add_lexeme(token, line, pos, i);
+	}
+	else if (ft_isope(line[pos]) >= 1)
+	{
+		check_ope(token, line, pos, i);
+	}
+	pos++;
+	return (pos);
+}
+
+void	add_lexeme(t_token *token, char *line, int pos, int i)
+{
+	token->lexeme = ft_strndup(&(line[i]), pos - i);
+}
+
+int        ft_isope(char c)
+{
+    if (c == '&')
+        return (1);
+    else if (c == '<')
+        return (2);
+    else if (c == '>')
+        return (3);
+    else if (c == '|')
+        return (4);
+    else if (c == ';')
+        return (5);
+    return (0);
 }

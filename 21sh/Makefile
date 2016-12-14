@@ -1,14 +1,11 @@
 CC =	gcc
 
-NAME =  ft_select
+NAME =  21sh
 
-SRC  =  ./abort_exit.c \
-	./signal.c \
-	./loop_it.c \
-	./term.c \
-	./main.c \
-	./all.c \
-	./lst.c \
+SRC  =  ./srcs/lexer_check.c \
+	./srcs/main.c \
+	./srcs/isallspace.c \
+	./srcs/get_next_line.c \
 
 OBJ =	$(SRC:.c=.o)
 
