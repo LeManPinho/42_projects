@@ -1,6 +1,6 @@
 #include "../includes/sh.h"
 
-void	check_ope(t_token *token, char *line, int pos, int i)
+int		check_ope(t_token *token, char *line, int pos, int i)
 {
 	if (ft_isope(line[pos]) == 1)
 	{
@@ -9,7 +9,7 @@ void	check_ope(t_token *token, char *line, int pos, int i)
 		pos = pos + 2;
 		add_lexeme(token, line, pos, i);
 	}
-	if (ft_isope(line[pos]) == 2)
+	else if (ft_isope(line[pos]) == 2)
 	{
 		if (line[pos + 1] == '<')
 		{
@@ -26,7 +26,7 @@ void	check_ope(t_token *token, char *line, int pos, int i)
 			add_lexeme(token, line, pos, i);
 		}
 	}
-	if (ft_isope(line[pos]) == 3)
+	else if (ft_isope(line[pos]) == 3)
 	{
 		if (line[pos + 1] == '>')
 		{
@@ -43,20 +43,31 @@ void	check_ope(t_token *token, char *line, int pos, int i)
 			add_lexeme(token, line, pos, i);
 		}
 	}
-	if (ft_isope(line[pos]) == 4)
+	else if (ft_isope(line[pos]) == 4)
 	{
-		token->type = PIPE;
-		i = pos;
-		pos++;
-		add_lexeme(token, line, pos, i);
+		if (line[pos + 1] == '|')
+		{
+			token->type = OR;
+			i = pos;
+			pos = pos + 2;
+			add_lexeme(token, line, pos, i);
+		}
+		else
+		{
+			token->type = PIPE;
+			i = pos;
+			pos++;
+			add_lexeme(token, line, pos, i);
+		}
 	}
-	if (ft_isope(line[pos]) == 5)
+	else if (ft_isope(line[pos]) == 5)
 	{
 		token->type = SEMICOLON;
 		i = pos;
 		pos++;
 		add_lexeme(token, line, pos, i);
 	}
+	return (pos);
 }
 
 int        ft_isprintnotope(char c)
@@ -77,6 +88,10 @@ int        ft_isprintnotope(char c)
         return (0);
     else if (c == '\n')
         return (0);
+    else if (c == '\"')
+    	return (0);
+    else if (c == '\'')
+    	return (0);
     else if (ft_isprint(c) == 1)
         return (1);
     return (0);
@@ -84,9 +99,20 @@ int        ft_isprintnotope(char c)
 
 void	print_tokens(t_token *token)
 {
+	printf("\n***TOKEN_LIST***\n");
 	while (token)
 	{
 		printf("type : (%d)\n", token->type);
 		printf("lexeme : (%s)\n", token->lexeme);
+		token = token->next;
 	}
+}
+
+t_token	*init_token(void)
+{
+	t_token	*token;
+
+	token = malloc(sizeof(t_token));
+	token->next = NULL;
+	return (token);
 }

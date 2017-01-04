@@ -43,9 +43,10 @@ typedef struct 			s_all
 	char				*line;
 	char				*epured_line;
 	t_token				*token;
+	t_token				*tokens_begin;
 }						t_all;
 
-void	check_ope(t_token *token, char *line, int pos, int i);
+int		check_ope(t_token *token, char *line, int pos, int i);
 int		ft_isprintnotope(char c);
 void	print_tokens(t_token *token);
 void	analise_line(t_all *all);
@@ -54,5 +55,6 @@ void	add_lexeme(t_token *token, char *line, int pos, int i);
 int		ft_isope(char c);
 int		isallspace(char *str);
 char	*epur_str(char *str);
+t_token	*init_token(void); 
 
 #endif
