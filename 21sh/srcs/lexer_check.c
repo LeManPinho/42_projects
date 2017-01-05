@@ -88,10 +88,10 @@ int        ft_isprintnotope(char c)
         return (0);
     else if (c == '\n')
         return (0);
-    else if (c == '\"')
-    	return (0);
-    else if (c == '\'')
-    	return (0);
+//    else if (c == '\"')
+//    	return (0);
+//    else if (c == '\'')
+//    	return (0);
     else if (ft_isprint(c) == 1)
         return (1);
     return (0);
@@ -99,12 +99,17 @@ int        ft_isprintnotope(char c)
 
 void	print_tokens(t_token *token)
 {
+	int		i;
+
+	i = 1;
 	printf("\n***TOKEN_LIST***\n");
 	while (token)
 	{
+		printf("TOKEN %d\n", i);
 		printf("type : (%d)\n", token->type);
 		printf("lexeme : (%s)\n", token->lexeme);
 		token = token->next;
+		i++;
 	}
 }
 

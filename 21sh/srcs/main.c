@@ -49,7 +49,7 @@ int		lire_lexeme(t_token *token, char *line, int pos)
 	int		i;
 
 	i = 0;
-	if (line[pos] == ' ' || line[pos] == '\t')
+	while (line[pos] == ' ' || line[pos] == '\t')
 		pos++;
 	if (line[pos] == '\'')
 	{
@@ -82,6 +82,7 @@ int		lire_lexeme(t_token *token, char *line, int pos)
 		while (ft_isprintnotope(line[pos]) == 1)
 			pos++;
 		add_lexeme(token, line, pos, i);
+		backslash_char(token);
 	}
 	else if (ft_isope(line[pos]) >= 1)
 	{

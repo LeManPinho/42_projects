@@ -6,6 +6,7 @@ SRC  =  ./srcs/lexer_check.c \
 	./srcs/main.c \
 	./srcs/isallspace.c \
 	./srcs/get_next_line.c \
+	./srcs/backslash_escape.c \
 
 OBJ =	$(SRC:.c=.o)
 

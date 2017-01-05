@@ -56,5 +56,6 @@ int		ft_isope(char c);
 int		isallspace(char *str);
 char	*epur_str(char *str);
 t_token	*init_token(void); 
+void	backslash_char(t_token *token);
 
 #endif
