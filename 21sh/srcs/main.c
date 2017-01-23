@@ -10,6 +10,13 @@ int		main(void)
 	{
 		ft_putstr("$> ");
 		get_next_line(0, &(all->line));
+		while ((i = unfinished_quote(all->line)) != 0)
+		{
+			if (i == 1)
+				all->line = finish_the_squote(all->line);
+			else if (i == 2)
+				all->line = finish_the_dquote(all->line);
+		}
 		if ((ft_strcmp(all->line, "\0") == 0) || (isallspace(all->line) == 1))
 			;
 		else

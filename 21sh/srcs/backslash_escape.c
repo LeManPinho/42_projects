@@ -38,6 +38,50 @@ void	backslash_char(t_token *token)
 	}
 }
 
+int		unfinished_quote(char *line)
+{
+	int sq;
+	int dq;
+	int i;
+
+	sq = 0;
+	dq = 0;
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '\'')
+			sq++;
+		if (line[i] == '\"')
+			dq++;
+		i++;
+	}
+	if (sq % 2 != 0)
+		return (1);
+	if (dq % 2 != 0)
+		return (2);
+	return (0);
+}
+
+char 	*finish_the_squote(char *line)
+{
+	char *myline;
+
+	ft_putstr("quote> ");
+	get_next_line(0, &myline);
+	myline = ft_strjoin(line, myline);
+	return (myline);
+}
+
+char 	*finish_the_dquote(char *line)
+{
+	char *myline;
+
+	ft_putstr("dquote> ");
+	get_next_line(0, &myline);
+	myline = ft_strjoin(line, myline);
+	return (myline);
+}
+
 int		quote_in_word(char *line, int pos)
 {
 	if (line[pos] == '\"')
