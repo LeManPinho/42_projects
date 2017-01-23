@@ -79,8 +79,7 @@ int		lire_lexeme(t_token *token, char *line, int pos)
 		printf("pos = %d\n", pos);
 		token->type = WORDS;
 		i = pos;
-		while (ft_isprintnotope(line[pos]) == 1)
-			pos++;
+		pos = get_lexeme_pos(line, pos);
 		add_lexeme(token, line, pos, i);
 		backslash_char(token);
 	}

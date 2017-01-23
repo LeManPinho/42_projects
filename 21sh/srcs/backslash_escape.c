@@ -24,7 +24,7 @@ void	backslash_char(t_token *token)
 		{
 			d = pos;
 			ft_memmove(&(token->lexeme[d]), &(token->lexeme[d + 1]), ft_strlen(token->lexeme) - d);
-			while (token->lexeme[pos] != '\'')
+			while (token->lexeme[pos] != '\"')
 				pos++;
 			ft_memmove(&(token->lexeme[pos]), &(token->lexeme[pos + 1]), ft_strlen(token->lexeme) - pos);
 			pos++;
@@ -36,4 +36,39 @@ void	backslash_char(t_token *token)
 		}
 		pos++;
 	}
+}
+
+int		quote_in_word(char *line, int pos)
+{
+	if (line[pos] == '\"')
+	{
+		pos++;
+		while (line[pos] != '\"')
+			pos++;
+		pos++;
+	}
+	else if (line[pos] == '\'')
+	{
+		pos++;
+		while (line[pos] != '\'')
+			pos++;
+		pos++;
+	}
+	return (pos);
+}
+
+int		get_lexeme_pos(char *line, int pos)
+{
+	int		exit;
+
+	exit = 0;
+	while (!exit)
+	{
+		while (ft_isprintnotope(line[pos]) == 1)
+			pos++;
+		pos = quote_in_word(line, pos);
+		if (ft_isprintnotope(line[pos]) == 0)
+			exit = 1;
+	}
+	return (pos);
 }

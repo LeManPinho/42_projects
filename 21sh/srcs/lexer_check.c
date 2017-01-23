@@ -88,10 +88,10 @@ int        ft_isprintnotope(char c)
         return (0);
     else if (c == '\n')
         return (0);
-//    else if (c == '\"')
-//    	return (0);
-//    else if (c == '\'')
-//    	return (0);
+    else if (c == '\"')
+    	return (0);
+    else if (c == '\'')
+    	return (0);
     else if (ft_isprint(c) == 1)
         return (1);
     return (0);
