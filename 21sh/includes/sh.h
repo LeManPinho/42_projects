@@ -59,5 +59,9 @@ t_token	*init_token(void);
 void	backslash_char(t_token *token);
 int		quote_in_word(char *line, int pos);
 int		get_lexeme_pos(char *line, int pos);
+int		unfinished_quote(char *line);
+char 	*finish_the_squote(char *line);
+char 	*finish_the_dquote(char *line);
+
 
 #endif

@@ -50,14 +50,32 @@ int		unfinished_quote(char *line)
 	while (line[i])
 	{
 		if (line[i] == '\'')
-			sq++;
+		{
+			sq = 1;
+			i++;
+			while (line[i] != '\'' && line[i] != '\0')
+				i++;
+			if (line[i] == '\'')
+				sq = 0;
+			else
+				break ;
+		}
 		if (line[i] == '\"')
-			dq++;
+		{
+			dq = 1;
+			i++;
+			while (line[i] != '\"' && line[i] != '\0')
+				i++;
+			if (line[i] == '\"')
+				dq = 0;
+			else
+				break ;
+		}
 		i++;
 	}
-	if (sq % 2 != 0)
+	if (sq == 1)
 		return (1);
-	if (dq % 2 != 0)
+	else if (dq == 1)
 		return (2);
 	return (0);
 }
