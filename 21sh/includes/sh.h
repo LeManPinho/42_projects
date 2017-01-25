@@ -46,6 +46,16 @@ typedef struct 			s_all
 	t_token				*tokens_begin;
 }						t_all;
 
+extern char			**environ;
+
+typedef struct 		s_tree
+{
+	int				type;
+	char			*content;
+	struct s_tree	*left;
+	struct s_tree	*right;
+} 					t_tree;
+
 int		check_ope(t_token *token, char *line, int pos, int i);
 int		ft_isprintnotope(char c);
 void	print_tokens(t_token *token);
