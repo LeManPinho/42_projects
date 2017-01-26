@@ -72,6 +72,18 @@ int		get_lexeme_pos(char *line, int pos);
 int		unfinished_quote(char *line);
 char 	*finish_the_squote(char *line);
 char 	*finish_the_dquote(char *line);
-
+void	free_tree(t_tree *tree);
+void	free_tab(char **tabl);
+void	parse(t_tree *tree, t_token *token);
+int		dotcoma(t_tree *tree, t_token *token);
+t_tree	*create_node(void);
+int		and_or(t_tree *tree, t_token *token);
+int		redirections(t_tree *tree, t_token *token);
+void	start_parse(t_token *token);
+t_token	*get_token(t_token *token, int type);
+t_token	*get_token_and_or(t_token *token);
+t_token	*get_token_redirections(t_token *token);
+t_token	*copy_token_left(t_token *begin, t_token *ope);
+t_token	*copy_token_right(t_token *ope);
 
 #endif

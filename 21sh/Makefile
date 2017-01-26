@@ -7,6 +7,10 @@ SRC  =  ./srcs/lexer_check.c \
 	./srcs/isallspace.c \
 	./srcs/get_next_line.c \
 	./srcs/backslash_escape.c \
+	./srcs/free_tree.c \
+	./srcs/tree.c \
+	./srcs/parse.c \
+	./srcs/start_parse.c \
 
 OBJ =	$(SRC:.c=.o)
 

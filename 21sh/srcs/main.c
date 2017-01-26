@@ -26,6 +26,7 @@ int		main(void)
 		{
 			analise_line(all);
 			print_tokens(all->tokens_begin);
+			start_parse(all->tokens_begin);
 		}
 		free(all->line);
 	}
